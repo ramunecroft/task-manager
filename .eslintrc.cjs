@@ -4,9 +4,7 @@ const path = require("path");
 const config = {
   overrides: [
     {
-      extends: [
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-      ],
+      extends: ["plugin:@typescript-eslint/recommended-requiring-type-checking"],
       files: ["*.ts", "*.tsx"],
       parserOptions: {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
@@ -39,7 +37,7 @@ const config = {
     "@typescript-eslint/no-misused-promises": [
       2,
       {
-        checksVoidReturn: { attributes: false },
+        checksVoidReturn: {attributes: false},
       },
     ],
     "@typescript-eslint/no-empty-function": "off",
