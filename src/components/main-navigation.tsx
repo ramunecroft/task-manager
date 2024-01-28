@@ -1,4 +1,4 @@
-import {HomeIcon} from "@/components/icons";
+import {Icons} from "@/components/icons";
 import Link from "next/link";
 
 export const MainNavigation = () => {
@@ -11,7 +11,7 @@ export const MainNavigation = () => {
   return (
     <>
       <Link className="mr-6 flex items-center space-x-2" href={"/"}>
-        <HomeIcon />
+        <Icons.home />
         <span className="hidden font-bold sm:inline-block">Task Manager</span>
       </Link>
       <nav className="flex items-center gap-6 text-sm">
