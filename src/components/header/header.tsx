@@ -1,7 +1,12 @@
 "use client";
 
-import {DocumentationModal, SearchButton} from "@/components";
-import {ActionPanel, HeaderContainer, MainNavigation} from "@/components/header";
+import {DocumentationModal} from "@/components";
+import {
+  ActionPanel,
+  HeaderContainer,
+  MainNavigation,
+  SearchButton,
+} from "@/components/header";
 import {showDocumentationAtom} from "@/store";
 import {useSetAtom} from "jotai/react";
 import {useEffect} from "react";
