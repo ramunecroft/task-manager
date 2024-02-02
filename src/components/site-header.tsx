@@ -1,14 +1,13 @@
 "use client";
 
+import {CommandMenu} from "@/components/command-menu";
 import {Icons} from "@/components/icons";
 import {MainNavigation} from "@/components/main-navigation";
-import {CommandMenu} from "@/components/command-menu";
 import {showDocumentationAtom} from "@/store";
 import {useSetAtom} from "jotai/react";
 import Link from "next/link";
-import {useEffect} from "react";
 
-export const SiteHeader = () => {
+export function SiteHeader() {
   const setShowDocumentationModal = useSetAtom(showDocumentationAtom);
 
   return (
@@ -32,4 +31,4 @@ export const SiteHeader = () => {
       </div>
     </header>
   );
-};
+}
