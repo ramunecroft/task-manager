@@ -1,4 +1,4 @@
-import {atom} from "jotai/vanilla";
+import {atom} from "jotai";
 
 export const searchContextAtom = atom("");
 searchContextAtom.debugLabel = "search context";
