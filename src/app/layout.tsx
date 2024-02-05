@@ -5,6 +5,7 @@ import "@/styles/globals.css";
 import {cn} from "@/lib/utils";
 import {fontSans} from "@/lib/fonts";
 import {SiteFooter} from "@/components/site-footer";
+import {QueryProvider} from "@/components/provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,19 +32,21 @@ export default function RootLayout({children}: Readonly<RootLayoutProps>) {
           "min-h-screen bg-background font-sans antialiased",
           fontSans.className
         )}>
-        <Provider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange>
-          <div vaul-drawer-wrapper="">
-            <div className="relative flex min-h-screen flex-col bg-background">
-              <SiteHeader />
-              <main className="flex-1">{children}</main>
-              <SiteFooter />
+        <QueryProvider>
+          <Provider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
+            <div vaul-drawer-wrapper="">
+              <div className="relative flex min-h-screen flex-col bg-background">
+                <SiteHeader />
+                <main className="flex-1">{children}</main>
+                <SiteFooter />
+              </div>
             </div>
-          </div>
-        </Provider>
+          </Provider>
+        </QueryProvider>
       </body>
     </html>
   );

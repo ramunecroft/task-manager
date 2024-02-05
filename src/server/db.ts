@@ -2,11 +2,9 @@ import {PrismaNeon} from "@prisma/adapter-neon";
 import {PrismaClient} from "@prisma/client";
 import {env} from "@/env.mjs";
 import {Pool, neonConfig} from "@neondatabase/serverless";
-import ws from "ws";
 import dotenv from "dotenv";
 
 dotenv.config();
-neonConfig.webSocketConstructor = ws;
 
 const connectionString = env.DATABASE_URL;
 
