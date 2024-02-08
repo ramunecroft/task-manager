@@ -1,4 +1,4 @@
-import {HomeIcon} from "lucide-react";
+import {HomeIcon, UserIcon} from "lucide-react";
 
 export const Icons = {
   github: () => (
@@ -17,4 +17,84 @@ export const Icons = {
     </div>
   ),
   home: () => <HomeIcon />,
+
+  low: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
+      <path
+        d="M12.5 6.1c.5-.3 1.1-.1 1.4.4.3.5.1 1.1-.3 1.3l-5 3c-.3.2-.7.2-1 0l-5-3c-.6-.2-.7-.9-.4-1.3.2-.5.9-.7 1.3-.4L8 8.8l4.5-2.7z"
+        fill="#0065ff"
+      />
+    </svg>
+  ),
+  lower: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
+      <path
+        d="M12.504883 8.14541c.5-.3 1.1-.1 1.4.4s.1 1-.4 1.3l-5 3c-.3.2-.7.2-1 0l-5-3c-.5-.3-.6-.9-.3-1.4.2-.4.8-.6 1.3-.3l4.5 2.7 4.5-2.7z"
+        fill="#0065ff"
+      />
+      <path
+        d="M12.504883 3.84541c.5-.3 1.1-.2 1.4.3s.1 1.1-.4 1.4l-5 3c-.3.2-.7.2-1 0l-5-3c-.5-.3-.6-.9-.3-1.4.3-.5.9-.6 1.4-.3l4.4 2.7 4.5-2.7z"
+        fill="#2684ff"
+      />
+    </svg>
+  ),
+  medium: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
+      <path d="M3 5h10v2H3z" fill="#ff5630" />
+      <path d="M3 9h10v2H3z" fill="#ff7452" />
+    </svg>
+  ),
+  high: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
+      <path
+        d="M3.5 9.9c-.5.3-1.1.1-1.4-.3s-.1-1.1.4-1.4l5-3c.3-.2.7-.2 1 0l5 3c.5.3.6.9.3 1.4-.3.5-.9.6-1.4.3L8 7.2 3.5 9.9z"
+        fill="#ff5630"
+      />
+    </svg>
+  ),
+  highest: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
+      <path
+        d="M3.47876 7.9c-.5.3-1.1.1-1.4-.4s-.1-1 .4-1.3l5-3c.3-.2.7-.2 1 0l5 3c.5.3.6.9.3 1.4-.2.4-.8.6-1.3.3l-4.5-2.7-4.5 2.7z"
+        fill="#ff5630"
+      />
+      <path
+        d="M3.47876 12.2c-.5.3-1.1.2-1.4-.3s-.1-1.1.4-1.4l5-3c.3-.2.7-.2 1 0l5 3c.5.3.6.9.3 1.4-.3.5-.9.6-1.4.3l-4.4-2.7-4.5 2.7z"
+        fill="#ff7452"
+      />
+    </svg>
+  ),
+  bug: () => (
+    <svg
+      width="112"
+      height="112"
+      viewBox="0 0 112 112"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4">
+      <path
+        d="M96 0H16C7.16344 0 0 7.16344 0 16V96C0 104.837 7.16344 112 16 112H96C104.837 112 112 104.837 112 96V16C112 7.16344 104.837 0 96 0Z"
+        fill="#E5493A"
+      />
+    </svg>
+  ),
+  story: () => (
+    <svg
+      viewBox="0 0 112 112"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-4 w-4">
+      <path
+        d="M96 0H16C7.16344 0 0 7.16344 0 16V96C0 104.837 7.16344 112 16 112H96C104.837 112 112 104.837 112 96V16C112 7.16344 104.837 0 96 0Z"
+        fill="#63BA3C"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M72 24H40C35.584 24 32 27.584 32 32V84C32 86.208 33.792 88 36 88C37.4 88 38.568 87.24 39.28 86.152L39.312 86.16L54.72 68.32C55.36 67.472 56.64 67.472 57.28 68.32L72.688 86.16L72.72 86.152C73.432 87.24 74.6 88 76 88C78.208 88 80 86.208 80 84V32C80 27.584 76.416 24 72 24Z"
+        fill="white"
+      />
+    </svg>
+  ),
+  user: () => <UserIcon />,
 };

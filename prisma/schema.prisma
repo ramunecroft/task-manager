@@ -14,9 +14,27 @@ model User {
   email String  @unique
   name  String?
   role  Role    @default(USER)
+  Task  Task[]
+}
+
+model Task {
+  id       Int      @id @default(autoincrement())
+  title    String
+  priority Priority @default(MEDIUM)
+  status   Boolean  @default(false)
+  userId   Int
+  user     User     @relation(fields: [userId], references: [id])
 }
 
 enum Role {
   USER
   ADMIN
+}
+
+enum Priority {
+  LOWER
+  LOW
+  MEDIUM
+  HIGH
+  HIGHEST
 }

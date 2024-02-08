@@ -1,4 +1,4 @@
-import {docsConfig} from "@/app/config/docs";
+import {jsonTaskList} from "@/app/config/docs";
 import {Button} from "@/components/ui/button";
 import {
   CommandDialog,
@@ -67,15 +67,15 @@ export function CommandMenu({...props}: DialogProps) {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Tasks">
-            {docsConfig.mainNav.map(navItem => (
+            {jsonTaskList.map(task => (
               <CommandItem
-                key={navItem.href}
-                value={navItem.title}
+                key={task.href}
+                value={task.ticketCode}
                 onSelect={() => {
-                  runCommand(() => router.push(navItem.href));
+                  runCommand(() => router.push(task.href));
                 }}>
                 <FileIcon className="mr-2 h-4 w-4" />
-                {navItem.title}
+                {task.ticketCode}
               </CommandItem>
             ))}
           </CommandGroup>

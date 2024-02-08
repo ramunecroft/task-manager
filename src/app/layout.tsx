@@ -41,7 +41,9 @@ export default function RootLayout({children}: Readonly<RootLayoutProps>) {
             <div vaul-drawer-wrapper="">
               <div className="relative flex min-h-screen flex-col bg-background">
                 <SiteHeader />
-                <main className="flex-1">{children}</main>
+                <main className="flex-1 items-center justify-center overflow-auto">
+                  {children}
+                </main>
                 <SiteFooter />
               </div>
             </div>
