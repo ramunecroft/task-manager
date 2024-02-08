@@ -20,8 +20,6 @@ export const TaskSection = ({status}: TaskSectionType) => {
     );
     if (!draggingTask) return;
 
-    console.log(`Task with Ticket Code ${draggingTask?.ticketCode} moved to ${status}`);
-
     setTaskList(prev =>
       prev.map(task => {
         if (task.ticketCode === draggingTask.ticketCode) {
