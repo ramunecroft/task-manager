@@ -1,33 +1,38 @@
 "use client";
 
-import {jsonTaskList, type TaskType} from "@/app/config/docs";
+import {type TaskType} from "@/app/config/docs";
 import {TaskCard} from "@/components/task-card";
-import {taskListAtom} from "@/store/task";
-import {useAtom} from "jotai";
-import React, {useEffect, type DragEvent} from "react";
+import {mutateAtom, postAtom, taskStore} from "@/store/task";
+import {Provider, useAtomValue, useSetAtom} from "jotai";
+import React, {type DragEvent} from "react";
 
 type TaskSectionType = {
   status: TaskType["status"];
 };
 
 export const TaskSection = ({status}: TaskSectionType) => {
-  const [taskList, setTaskList] = useAtom(taskListAtom);
+  const taskList = useAtomValue(postAtom);
+  const mutate = useSetAtom(mutateAtom);
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  if (!taskList) return;
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const draggingTask = taskList.find(
+    const draggingTask = taskList?.find(
       task => task.ticketCode === e.dataTransfer.getData("text/plain")
     );
     if (!draggingTask) return;
 
-    setTaskList(prev =>
-      prev.map(task => {
-        if (task.ticketCode === draggingTask.ticketCode) {
-          return {...task, status: status};
-        }
-        return task;
-      })
-    );
+    await fetch("/api/task", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ticketCode: draggingTask.ticketCode,
+        status,
+      }),
+    });
+    await mutate(taskList);
   };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
@@ -35,26 +40,29 @@ export const TaskSection = ({status}: TaskSectionType) => {
   };
 
   return (
-    <div
-      className="bg-gray-100 dark:bg-gray-800/40"
-      onDrop={e => handleDrop(e)}
-      onDragOver={e => handleDragOver(e)}>
-      <div className="flex flex-col items-start justify-center space-y-2">
-        <h3 className="text-md mx-4 my-2 font-semibold text-gray-500 dark:text-white">
-          {status}
-        </h3>
-        {taskList
-          .filter(task => task.status === status)
-          .map((task, index) => (
-            <TaskCard
-              key={task.ticketCode}
-              description={task.description}
-              ticketCode={task.ticketCode}
-              priority={task.priority}
-              voteCount={task.voteCount}
-            />
-          ))}
+    <Provider store={taskStore}>
+      <div
+        className="bg-gray-100 dark:bg-gray-800/40"
+        onDrop={e => handleDrop(e)}
+        onDragOver={e => handleDragOver(e)}>
+        <div className="flex flex-col items-start justify-center space-y-2">
+          <h3 className="text-md mx-4 my-2 font-semibold text-gray-500 dark:text-white">
+            {status.split("_").join(" ")}
+          </h3>
+          {Array.isArray(taskList) &&
+            taskList
+              .filter(task => task.status === status)
+              .map((task, index) => (
+                <TaskCard
+                  key={task.ticketCode}
+                  description={task.description}
+                  ticketCode={task.ticketCode}
+                  priority={task.priority}
+                  voteCount={task.voteCount}
+                />
+              ))}
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 };

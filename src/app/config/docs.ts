@@ -30,7 +30,7 @@ export type TaskType = {
   ticketCode: string;
   voteCount: number;
   priority: (typeof Priority)[keyof typeof Priority];
-  status: "TO DO" | "IN PROGRESS" | "IN REVIEW" | "DONE";
+  status: "TO_DO" | "IN_PROGRESS" | "IN_REVIEW" | "DONE";
   href: string;
 };
 
@@ -40,7 +40,7 @@ export const jsonTaskList: TaskType[] = [
     ticketCode: "EXC-001",
     priority: Priority.Highest,
     voteCount: 0,
-    status: "TO DO",
+    status: "TO_DO",
     href: "/task/0001",
   },
   {
@@ -49,7 +49,7 @@ export const jsonTaskList: TaskType[] = [
     ticketCode: "EXC-002",
     priority: Priority.Medium,
     voteCount: 0,
-    status: "TO DO",
+    status: "TO_DO",
     href: "/task/0002",
   },
   {
@@ -57,7 +57,7 @@ export const jsonTaskList: TaskType[] = [
     ticketCode: "EXC-003",
     priority: Priority.Lower,
     voteCount: 0,
-    status: "TO DO",
+    status: "TO_DO",
     href: "/task/0003",
   },
   {
@@ -65,7 +65,7 @@ export const jsonTaskList: TaskType[] = [
     ticketCode: "EXC-004",
     priority: Priority.Medium,
     voteCount: 0,
-    status: "IN PROGRESS",
+    status: "IN_PROGRESS",
     href: "/task/0004",
   },
   {
@@ -73,7 +73,7 @@ export const jsonTaskList: TaskType[] = [
     ticketCode: "EXC-005",
     priority: Priority.Low,
     voteCount: 0,
-    status: "IN PROGRESS",
+    status: "IN_PROGRESS",
     href: "/task/0005",
   },
   {
@@ -81,7 +81,7 @@ export const jsonTaskList: TaskType[] = [
     ticketCode: "EXC-006",
     priority: Priority.High,
     voteCount: 0,
-    status: "IN REVIEW",
+    status: "IN_REVIEW",
     href: "/task/0006",
   },
   {
@@ -89,7 +89,7 @@ export const jsonTaskList: TaskType[] = [
     ticketCode: "EXC-007",
     priority: Priority.Medium,
     voteCount: 0,
-    status: "IN REVIEW",
+    status: "IN_REVIEW",
     href: "/task/0007",
   },
   {

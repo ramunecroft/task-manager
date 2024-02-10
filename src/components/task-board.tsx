@@ -2,6 +2,7 @@ import {TaskSection} from "@/components/task-section";
 import {Button} from "@/components/ui/button";
 import {FolderIcon} from "lucide-react";
 import Link from "next/link";
+import {Suspense} from "react";
 
 export const TaskBoard = () => {
   return (
@@ -36,9 +37,11 @@ export const TaskBoard = () => {
           </nav>
         </div>
         <div className="grid h-screen flex-1 grid-flow-col grid-cols-4 gap-8">
-          <TaskSection status="TO DO" />
-          <TaskSection status="IN PROGRESS" />
-          <TaskSection status="IN REVIEW" />
+          <Suspense fallback={<h1>hello</h1>}>
+            <TaskSection status="TO_DO" />
+          </Suspense>
+          <TaskSection status="IN_PROGRESS" />
+          <TaskSection status="IN_REVIEW" />
           <TaskSection status="DONE" />
         </div>
       </div>
