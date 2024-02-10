@@ -7,7 +7,7 @@ export const messageAtom = atom("");
 const mutationResultAtom = atom<TaskType[] | null>(null);
 mutationResultAtom.debugPrivate = true;
 
-export const postAtom = atom<TaskType[]>(async get => {
+export const postAtom = atom<Promise<TaskType[]>>(async get => {
   const mutationResult = get(mutationResultAtom);
   if (mutationResult) {
     return mutationResult;
