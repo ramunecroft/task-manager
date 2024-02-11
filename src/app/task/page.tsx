@@ -1,7 +1,9 @@
-import {getTasks} from "@/client/api/task";
+import {TaskBoard} from "@/components/task-board";
 
-export default async function TaskPage() {
-  const res = await getTasks();
-  console.log(await res.json());
-  return <div className="container">{/* //   <TaskBoard /> */}1</div>;
+export default function TaskPage() {
+  return (
+    <div className="container">
+      <TaskBoard />
+    </div>
+  );
 }
