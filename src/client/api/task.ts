@@ -1,7 +1,8 @@
 import {apiFetch} from "@/lib/utils";
 
 export const getTasks = async () => {
-  const url = "http://localhost:3000/api/task";
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/task`;
+
   const res = await apiFetch<Response, undefined>(url, {
     headers: {
       "Content-Type": "application/json",
