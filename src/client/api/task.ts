@@ -14,7 +14,7 @@ export const getTasks = async () => {
   }
   if (res.status === 200) {
     console.log("res", res);
-    return;
+    return res.json();
   }
   return res.json();
 };
