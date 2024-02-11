@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1707624456063,
+      "tag": "0000_nappy_mockingbird",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1707627656400,
+      "tag": "0001_slow_marvel_apes",
+      "breakpoints": true
+    }
+  ]
+}

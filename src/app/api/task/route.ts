@@ -1,44 +1,35 @@
-import {type TaskType} from "@/app/config/docs";
-import {db} from "@/server/db";
+import {db} from "@/server";
+import {dragUpdateTaskSchema, tasks} from "@/server/schema";
+import {eq} from "drizzle-orm";
 import {NextResponse} from "next/server";
-
-type TaskRequestType = {
-  ticketCode: string;
-  status: TaskType["status"];
-};
 
 export async function GET() {
   try {
-    const tasks = await db.task.findMany();
-    return NextResponse.json(tasks);
+    const taskList = await db.select().from(tasks);
+    return NextResponse.json(taskList);
   } catch (error) {
-    console.error("Database error:", error);
     return NextResponse.json({message: "Internal Server Error"}, {status: 500});
   }
 }
 
 export async function POST(request: Request) {
-  let updateTask: TaskRequestType;
   try {
-    updateTask = (await request.json()) as TaskRequestType;
-    if (!updateTask.ticketCode || !updateTask.status) {
+    const payload: unknown = await request.json();
+    const parsed = dragUpdateTaskSchema.safeParse(payload);
+
+    if (!parsed.success) {
       return NextResponse.json({message: "Invalid request data"}, {status: 400});
     }
-  } catch (error) {
-    return NextResponse.json({message: "Bad request"}, {status: 400});
-  }
 
-  try {
-    const result = await db.task.update({
-      where: {
-        ticketCode: updateTask.ticketCode,
-      },
-      data: {
-        status: updateTask.status,
-      },
-    });
+    const {status, ticketCode} = parsed.data;
+
+    const result = await db
+      .update(tasks)
+      .set({status: status})
+      .where(eq(tasks.ticketCode, ticketCode))
+      .returning();
     return NextResponse.json({message: "Task updated successfully", task: result});
   } catch (error) {
-    return NextResponse.json({message: "Internal Server Error"}, {status: 500});
+    return NextResponse.json({message: "Task updated failed"}, {status: 500});
   }
 }

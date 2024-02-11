@@ -9,7 +9,10 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "prettier": "prettier --check \"**/*.{js,jsx,ts,tsx}\"",
-    "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\""
+    "prettier:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "drizzle:generate": "drizzle-kit generate:pg --config=src/server/drizzle.config.ts",
+    "drizzle:push": "drizzle-kit push:pg --config=src/server/drizzle.config.ts",
+    "drizzle:introspect": "drizzle-kit introspect:pg --config=src/server/drizzle.config.ts"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -29,8 +32,6 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@neondatabase/serverless": "^0.7.2",
-    "@prisma/adapter-neon": "^5.9.1",
-    "@prisma/client": "^5.9.1",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
@@ -41,6 +42,8 @@
     "clsx": "^2.1.0",
     "cmdk": "^0.2.0",
     "dotenv": "^16.4.0",
+    "drizzle-orm": "^0.29.3",
+    "drizzle-zod": "^0.5.1",
     "geist": "^1.2.1",
     "husky": "^8.0.3",
     "jotai": "^2.6.3",
@@ -48,11 +51,12 @@
     "lucide-react": "^0.316.0",
     "next": "14.1.0",
     "next-themes": "^0.2.1",
+    "postgres": "^3.4.3",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "ws": "^8.16.0"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.11.16",
@@ -60,17 +64,14 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "autoprefixer": "^10.0.1",
+    "drizzle-kit": "^0.20.14",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "lint-staged": "^15.2.0",
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.5.11",
-    "prisma": "^5.9.1",
     "tailwindcss": "^3.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
-  },
-  "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
