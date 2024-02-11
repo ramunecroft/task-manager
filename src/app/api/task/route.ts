@@ -9,6 +9,7 @@ export async function GET() {
     console.log("taskList", taskList);
     return NextResponse.json(taskList);
   } catch (error) {
+    console.log("Error", error);
     return NextResponse.json({message: "Internal Server Error"}, {status: 500});
   }
 }
