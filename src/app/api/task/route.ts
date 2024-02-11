@@ -8,6 +8,7 @@ type TaskRequestType = {
 };
 
 export async function GET() {
+  console.log(1);
   try {
     const tasks = await db.task.findMany();
     return NextResponse.json(tasks);
