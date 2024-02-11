@@ -8,4 +8,4 @@ export const Priority = {
 
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL ||
-  new URL("https://" + process.env.NEXT_PUBLIC_VERCEL_URL);
+  new URL("https://" + process.env.NEXT_PUBLIC_VERCEL_URL).toString();
