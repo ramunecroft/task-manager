@@ -1,3 +1,5 @@
+import {headers} from "next/headers";
+
 export const Priority = {
   Lower: "lower",
   Low: "low",
@@ -6,5 +8,7 @@ export const Priority = {
   Highest: "highest",
 } as const;
 
-export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL;
+const url = headers().get("host");
+const protocol = "https";
+
+export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? `${protocol}://${url}`;
