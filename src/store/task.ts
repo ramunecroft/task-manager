@@ -1,3 +1,5 @@
+"use client";
+
 import {getTasks} from "@/client/api/task";
 import {type Task} from "@/server/schema";
 import {atom, createStore} from "jotai";
