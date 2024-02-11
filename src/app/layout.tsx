@@ -23,6 +23,8 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
+console.log("proenv", process.env);
+
 export default function RootLayout({children}: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">

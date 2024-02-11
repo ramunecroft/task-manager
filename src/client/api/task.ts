@@ -1,6 +1,8 @@
 import {apiFetch} from "@/lib/utils";
 
 export const getTasks = async () => {
+  console.log("proenv", process.env);
+
   const url = `${process.env.NEXT_PUBLIC_API_URL}/api/task`;
 
   const res = await apiFetch<Response, undefined>(url, {
