@@ -1,11 +1,9 @@
-import {API_URL} from "@/app/constants";
-import {fetch} from "@/lib/utils";
-
 export const getTasks = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/task`, {
+  const res = await fetch(`/api/task`, {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-cache",
   });
 
   if (res.status === 200) {
