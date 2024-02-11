@@ -9,7 +9,7 @@ export const getTasks = async () => {
   });
 
   if (res.headers.get("content-type") !== "application/json") {
-    return {};
+    return;
   }
   if (res.status === 200) {
     console.log("res", res);

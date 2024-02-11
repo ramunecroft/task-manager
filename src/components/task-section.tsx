@@ -47,7 +47,7 @@ export const TaskSection = ({status}: TaskSectionType) => {
         <h3 className="text-md mx-4 my-2 font-semibold text-gray-500 dark:text-white">
           {status.split("_").join(" ")}
         </h3>
-        {Array.isArray(taskList) &&
+        {Array.isArray(taskList) ? (
           taskList
             .filter(task => task.status === status)
             .map((task, index) => (
@@ -58,7 +58,10 @@ export const TaskSection = ({status}: TaskSectionType) => {
                 priority={task.priority}
                 voteCount={task.voteCount}
               />
-            ))}
+            ))
+        ) : (
+          <h1>No Data</h1>
+        )}
       </div>
     </div>
   );
