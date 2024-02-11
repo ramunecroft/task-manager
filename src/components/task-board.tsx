@@ -37,7 +37,9 @@ export const TaskBoard = () => {
           </nav>
         </div>
         <div className="grid h-screen flex-1 grid-flow-col grid-cols-4 gap-8">
-          <TaskSection status="TO_DO" />
+          <Suspense fallback={<h1>hello</h1>}>
+            <TaskSection status="TO_DO" />
+          </Suspense>
           <TaskSection status="IN_PROGRESS" />
           <TaskSection status="IN_REVIEW" />
           <TaskSection status="DONE" />

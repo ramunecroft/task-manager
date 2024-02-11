@@ -25,4 +25,4 @@ async function apiFetch<Res, Req>(
   return response;
 }
 
-export {apiFetch as fetch};
+export {apiFetch as apiFetch};

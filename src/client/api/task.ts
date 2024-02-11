@@ -1,8 +1,8 @@
-import {fetch} from "@/lib/utils";
+import {apiFetch} from "@/lib/utils";
 
 export const getTasks = async () => {
   const url = "http://localhost:3000/api/task";
-  const res = await fetch<Response, undefined>(url, {
+  const res = await apiFetch<Response, undefined>(url, {
     headers: {
       "Content-Type": "application/json",
     },
