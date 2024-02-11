@@ -2,12 +2,7 @@ import {API_URL} from "@/app/constants";
 import {fetch} from "@/lib/utils";
 
 export const getTasks = async () => {
-  console.log("proenv", process.env);
-  console.log("xxx", API_URL);
-
-  const url = `${API_URL}/api/task`;
-
-  const res = await fetch(url, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/task`, {
     headers: {
       "Content-Type": "application/json",
     },

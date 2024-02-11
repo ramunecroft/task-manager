@@ -24,9 +24,6 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-console.log("proenv", process.env);
-console.log("xxx", API_URL);
-
 export default function RootLayout({children}: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
