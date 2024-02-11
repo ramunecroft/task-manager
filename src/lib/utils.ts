@@ -16,13 +16,13 @@ export function formatDate(date: Date, formatStr: string): string {
     .replace("dd", day);
 }
 
-// async function apiFetch<Res, Req>(
-//   url: string,
-//   options: RequestInit,
-//   payload?: Req
-// ): Promise<Response> {
-//   const response = await fetch(url, {...options, body: JSON.stringify(payload)});
-//   return response;
-// }
+async function apiFetch<Res, Req>(
+  url: string,
+  options: RequestInit,
+  payload?: Req
+): Promise<Response> {
+  const response = await fetch(url, {...options, body: JSON.stringify(payload)});
+  return response;
+}
 
-// export {apiFetch as apiFetch};
+export {apiFetch as apiFetch};
