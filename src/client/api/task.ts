@@ -8,6 +8,9 @@ export const getTasks = async () => {
     },
   });
 
+  if (res.headers.get("content-type") !== "application/json") {
+    return {status: res.status, message: "Invalid content type"};
+  }
   if (res.status === 200) {
     console.log("res", res);
     return res;
