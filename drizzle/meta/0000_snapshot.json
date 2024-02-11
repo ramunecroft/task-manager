@@ -1,5 +1,5 @@
 {
-  "id": "ff04a0c5-7a65-4140-95c6-dfd9990e707a",
+  "id": "1495271d-a63e-434b-aa0d-7c9a74f27ea0",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -30,25 +30,26 @@
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "status": {
           "name": "status",
           "type": "status",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "ticketCode": {
           "name": "ticketCode",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "voteCount": {
           "name": "voteCount",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": false,
+          "default": 0
         },
         "owner_id": {
           "name": "owner_id",

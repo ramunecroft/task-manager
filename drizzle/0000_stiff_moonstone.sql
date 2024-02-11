@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXISTS "tasks" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"title" text NOT NULL,
 	"priority" "priority",
-	"description" text,
-	"status" "status",
-	"ticketCode" text,
-	"voteCount" integer,
+	"description" text NOT NULL,
+	"status" "status" NOT NULL,
+	"ticketCode" text NOT NULL,
+	"voteCount" integer DEFAULT 0,
 	"owner_id" integer
 );
 --> statement-breakpoint
