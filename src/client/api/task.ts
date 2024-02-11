@@ -1,5 +1,8 @@
+import getDomain from "@/lib/get-domain";
+
 export const getTasks = async () => {
-  const res = await fetch(`https://localhost:3000/api/task`, {
+  const domain = getDomain();
+  const res = await fetch(`${domain}/api/task`, {
     headers: {
       "Content-Type": "application/json",
     },
