@@ -14,16 +14,14 @@ export const postAtom = atom<Promise<Task[]>>(async get => {
   if (mutationResult) {
     return mutationResult;
   }
-  const res = await getTasks();
+  const data = (await getTasks()) as Task[];
 
-  const data = (await res.json()) as Task[];
   return data;
 });
 postAtom.debugLabel = "taskList";
 
 export const mutateAtom = atom(null, async (get, set, taskList) => {
-  const res = await getTasks();
-  const data = (await res.json()) as Task[];
+  const data = (await getTasks()) as Task[];
   set(mutationResultAtom, data);
 });
 
