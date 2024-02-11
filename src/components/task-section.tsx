@@ -1,13 +1,13 @@
 "use client";
 
-import {type TaskType} from "@/app/config/docs";
 import {TaskCard} from "@/components/task-card";
+import {type Task} from "@/server/schema";
 import {mutateAtom, postAtom, taskStore} from "@/store/task";
 import {Provider, useAtomValue, useSetAtom} from "jotai";
 import React, {type DragEvent} from "react";
 
 type TaskSectionType = {
-  status: TaskType["status"];
+  status: Task["status"];
 };
 
 export const TaskSection = ({status}: TaskSectionType) => {

@@ -1,7 +1,7 @@
 export const Priority = {
-  Lower: 0,
-  Low: 1,
-  Medium: 2,
-  High: 3,
-  Highest: 4,
+  Lower: "lower",
+  Low: "low",
+  Medium: "medium",
+  High: "high",
+  Highest: "highest",
 } as const;

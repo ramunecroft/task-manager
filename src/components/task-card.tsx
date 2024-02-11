@@ -1,6 +1,5 @@
 "use client";
 
-import {jsonTaskList} from "@/app/config/docs";
 import {Priority} from "@/app/constants";
 import {Icons} from "@/components/icons";
 import {
@@ -10,6 +9,7 @@ import {
   CardContent,
   CardDescription,
 } from "@/components/ui/card";
+import {type Task} from "@/server/schema";
 import React from "react";
 
 /**
@@ -20,8 +20,8 @@ import React from "react";
 type TaskCardProps = {
   description: string;
   ticketCode: string;
-  voteCount: number;
-  priority: (typeof Priority)[keyof typeof Priority];
+  voteCount: Task["voteCount"];
+  priority: Task["priority"];
 };
 
 export const TaskCard = ({

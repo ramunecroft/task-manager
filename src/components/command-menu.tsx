@@ -1,4 +1,3 @@
-import {jsonTaskList} from "@/app/config/docs";
 import {Button} from "@/components/ui/button";
 import {
   CommandDialog,
@@ -10,7 +9,9 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import {cn} from "@/lib/utils";
+import {postAtom} from "@/store/task";
 import type {DialogProps} from "@radix-ui/react-alert-dialog";
+import {useAtomValue} from "jotai";
 import {FileIcon, LaptopIcon, MoonIcon, SunIcon} from "lucide-react";
 import {useTheme} from "next-themes";
 import {useRouter} from "next/navigation";
@@ -20,6 +21,7 @@ export function CommandMenu({...props}: DialogProps) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const {setTheme} = useTheme();
+  const taskList = useAtomValue(postAtom);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -67,12 +69,12 @@ export function CommandMenu({...props}: DialogProps) {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Tasks">
-            {jsonTaskList.map(task => (
+            {taskList.map(task => (
               <CommandItem
-                key={task.href}
+                key={task.ticketCode}
                 value={task.ticketCode}
                 onSelect={() => {
-                  runCommand(() => router.push(task.href));
+                  runCommand(() => router.push(task.ticketCode));
                 }}>
                 <FileIcon className="mr-2 h-4 w-4" />
                 {task.ticketCode}
