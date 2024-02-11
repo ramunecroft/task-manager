@@ -7,8 +7,3 @@ export const Priority = {
   High: "high",
   Highest: "highest",
 } as const;
-
-const url = headers().get("host");
-const protocol = "https";
-
-export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? `${protocol}://${url}`;
