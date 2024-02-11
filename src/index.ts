@@ -2,7 +2,7 @@ import {z} from "zod";
 
 const envVariables = z.object({
   DATABASE_URL: z.string().url(),
-  NEXT_PUBLIC_API_URL: z.string(),
+  NEXT_PUBLIC_API_URL: z.string().url().default(""),
 });
 
 envVariables.parse(process.env);
