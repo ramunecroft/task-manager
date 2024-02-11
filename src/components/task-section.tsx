@@ -1,6 +1,7 @@
 "use client";
 
 import {TaskCard} from "@/components/task-card";
+import getDomain from "@/lib/get-domain";
 import {type Task} from "@/server/schema";
 import {mutateAtom, postAtom} from "@/store/task";
 import {useAtomValue, useSetAtom} from "jotai";
@@ -14,6 +15,8 @@ export const TaskSection = ({status}: TaskSectionType) => {
   const taskList = useAtomValue(postAtom);
   const mutate = useSetAtom(mutateAtom);
 
+  const domain = getDomain();
+
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const draggingTask = taskList?.find(
@@ -21,7 +24,7 @@ export const TaskSection = ({status}: TaskSectionType) => {
     );
     if (!draggingTask) return;
 
-    await fetch("/api/task", {
+    await fetch(`${domain}/api/task`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
