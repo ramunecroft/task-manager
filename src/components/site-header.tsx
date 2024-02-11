@@ -3,13 +3,9 @@
 import {CommandMenu} from "@/components/command-menu";
 import {Icons} from "@/components/icons";
 import {MainNavigation} from "@/components/main-navigation";
-import {showDocumentationAtom} from "@/store";
-import {useSetAtom} from "jotai/react";
 import Link from "next/link";
 
 export function SiteHeader() {
-  const setShowDocumentationModal = useSetAtom(showDocumentationAtom);
-
   return (
     <header className="sticky top-0 z-50 flex w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">

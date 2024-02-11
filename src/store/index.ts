@@ -1,7 +1,13 @@
-import {atom} from "jotai";
+import {atom, type Getter} from "jotai";
 
-export const searchContextAtom = atom("");
-searchContextAtom.debugLabel = "search context";
+export function atomWithRefresh<T>(fn: (get: Getter) => T) {
+  const refreshCounter = atom(0);
 
-export const showDocumentationAtom = atom(false);
-showDocumentationAtom.debugLabel = "documentation modal";
+  return atom(
+    get => {
+      get(refreshCounter);
+      return fn(get);
+    },
+    (_, set) => set(refreshCounter, i => i + 1)
+  );
+}
