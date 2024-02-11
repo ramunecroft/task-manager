@@ -6,6 +6,7 @@ import {cn} from "@/lib/utils";
 import {fontSans} from "@/lib/fonts";
 import {SiteFooter} from "@/components/site-footer";
 import {QueryProvider} from "@/components/provider";
+import {API_URL} from "@/app/constants";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,6 +25,7 @@ interface RootLayoutProps {
 }
 
 console.log("proenv", process.env);
+console.log("xxx", API_URL);
 
 export default function RootLayout({children}: Readonly<RootLayoutProps>) {
   return (
