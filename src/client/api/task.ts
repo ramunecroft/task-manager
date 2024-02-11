@@ -1,4 +1,4 @@
-import {API_URL} from "@/app/page";
+import {API_URL} from "@/app/constants";
 import {fetch} from "@/lib/utils";
 
 export const getTasks = async () => {
