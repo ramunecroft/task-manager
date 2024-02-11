@@ -7,4 +7,5 @@ export const Priority = {
 } as const;
 
 export const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "https" + process.env.NEXT_PUBLIC_VERCEL_URL;
+  process.env.NEXT_PUBLIC_API_URL ||
+  new URL("https://" + process.env.NEXT_PUBLIC_VERCEL_URL);
