@@ -41,6 +41,7 @@
     "clsx": "^2.1.0",
     "cmdk": "^0.2.0",
     "dotenv": "^16.4.0",
+    "dotenv-expand": "^11.0.2",
     "drizzle-orm": "^0.29.3",
     "drizzle-zod": "^0.5.1",
     "geist": "^1.2.1",
