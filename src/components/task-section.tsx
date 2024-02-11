@@ -1,25 +1,19 @@
 "use client";
 
-// import {mutateAtom, postAtom, taskStore} from "@/store/task";
-import {Provider, useAtomValue, useSetAtom} from "jotai";
-import React, {type DragEvent} from "react";
-import {getTasks} from "../client/api/task";
-import {type Task} from "@/server/schema";
 import {TaskCard} from "@/components/task-card";
+import {type Task} from "@/server/schema";
+import {mutateAtom, postAtom} from "@/store/task";
+import {useAtomValue, useSetAtom} from "jotai";
+import React, {type DragEvent} from "react";
 
 type TaskSectionType = {
   status: Task["status"];
 };
 
-export const TaskSection = async ({status}: TaskSectionType) => {
-  // const taskList = useAtomValue(postAtom);
-  // const mutate = useSetAtom(mutateAtom);
+export const TaskSection = ({status}: TaskSectionType) => {
+  const taskList = useAtomValue(postAtom);
+  const mutate = useSetAtom(mutateAtom);
 
-  const response = await getTasks();
-
-  const taskList = (await response.json()) as Task[];
-
-  if (!response) return;
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const draggingTask = taskList?.find(
@@ -37,6 +31,7 @@ export const TaskSection = async ({status}: TaskSectionType) => {
         status,
       }),
     });
+    await mutate(taskList);
   };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
