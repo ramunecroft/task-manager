@@ -40,6 +40,7 @@ export const TaskCard = ({
 
   return (
     <Card
+      role="task-card"
       onClick={() => onClick()}
       onDragStart={e => handleDragStart(e, ticketCode)}
       className="w-full flex-1 hover:cursor-pointer hover:shadow-lg"
@@ -68,13 +69,13 @@ export const TaskCard = ({
 
 export const PriorityIcon = ({level}: {level: Task["priority"]}) => {
   if (level === Priority.Lower) {
-    return <Icons.lower />;
+    return <Icons.lower data-testid={123} />;
   }
   if (level === Priority.Low) {
     return <Icons.low />;
   }
   if (level === Priority.Medium) {
-    return <Icons.medium />;
+    return <Icons.medium data-testid={125} />;
   }
   if (level === Priority.High) {
     return <Icons.high />;

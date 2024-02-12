@@ -10,7 +10,6 @@ const createJestConfig = nextJest({
 const config: Config = {
   roots: ["<rootDir>"],
   testEnvironment: "jest-environment-jsdom",
-  testRegex: "(/__tests__/.*|(\\.|/)(test))\\.[jt]sx?$",
   moduleFileExtensions: ["ts", "tsx", "js", "json", "jsx"],
   testPathIgnorePatterns: [
     "<rootDir>/.next/",
@@ -28,20 +27,14 @@ const config: Config = {
   collectCoverage: false,
   coverageThreshold: {
     global: {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: 70,
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
     },
   },
   coverageReporters: ["json", "html"],
-  collectCoverageFrom: [
-    "<rootDir>/src/**/*.*",
-    "!**/*.d.ts",
-    "!**/node_modules/**",
-    "!<rootDir>/src/components/**/*.stories.*",
-    "!<rootDir>/src/pages/_app.tsx",
-  ],
+  collectCoverageFrom: ["<rootDir>/src/**/*.*"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
