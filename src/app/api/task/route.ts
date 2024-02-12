@@ -14,7 +14,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function PUT(request: Request) {
   try {
     const payload: unknown = await request.json();
     const parsed = dragUpdateTaskSchema.safeParse(payload);
