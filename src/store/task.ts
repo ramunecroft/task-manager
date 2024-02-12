@@ -6,11 +6,11 @@ import {atom, createStore} from "jotai";
 
 export const messageAtom = atom("");
 
-const mutationResultAtom = atom<Task[] | null>(null);
-mutationResultAtom.debugPrivate = true;
+const taskMutationResultAtom = atom<Task[] | null>(null);
+taskMutationResultAtom.debugPrivate = true;
 
 export const postAtom = atom<Promise<Task[]>>(async get => {
-  const mutationResult = get(mutationResultAtom);
+  const mutationResult = get(taskMutationResultAtom);
   if (mutationResult) {
     return mutationResult;
   }
@@ -22,7 +22,7 @@ postAtom.debugLabel = "taskList";
 
 export const mutateAtom = atom(null, async (get, set, taskList) => {
   const data = (await getTasks()) as Task[];
-  set(mutationResultAtom, data);
+  set(taskMutationResultAtom, data);
 });
 
 export const taskStore = createStore();

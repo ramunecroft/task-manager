@@ -1,8 +1,8 @@
-import getDomain from "@/lib/get-domain";
+import {API_URL} from "@/app/config";
+import {type Task} from "@/server/schema";
 
 export const getTasks = async () => {
-  const domain = getDomain();
-  const res = await fetch(`${domain}/api/task`, {
+  const res = await fetch(`${API_URL}/api/task`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -16,5 +16,23 @@ export const getTasks = async () => {
     console.log("res", res);
     return res.json();
   }
+  return res.json();
+};
+
+export const updateDraggingTask = async (
+  ticketCode: string,
+  status: Task["status"]
+) => {
+  const res = await fetch(`${API_URL}/api/task`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ticketCode,
+      status,
+    }),
+  });
+
   return res.json();
 };
