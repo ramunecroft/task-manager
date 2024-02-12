@@ -9,7 +9,7 @@ export const messageAtom = atom("");
 const taskMutationResultAtom = atom<Task[] | null>(null);
 taskMutationResultAtom.debugPrivate = true;
 
-export const postAtom = atom<Promise<Task[]>>(async get => {
+export const taskListAtom = atom(async get => {
   const mutationResult = get(taskMutationResultAtom);
   if (mutationResult) {
     return mutationResult;
@@ -18,11 +18,28 @@ export const postAtom = atom<Promise<Task[]>>(async get => {
 
   return data;
 });
-postAtom.debugLabel = "taskList";
+taskListAtom.debugLabel = "taskList";
 
 export const mutateAtom = atom(null, async (get, set, taskList) => {
   const data = (await getTasks()) as Task[];
   set(taskMutationResultAtom, data);
 });
+
+export const selectedTaskTicketCodeAtom = atom<string | null>(null);
+selectedTaskTicketCodeAtom.debugPrivate = true;
+
+export const selectedTaskAtom = atom(async get => {
+  const taskList = await get(taskListAtom);
+
+  const selectedTaskTicketCode = get(selectedTaskTicketCodeAtom);
+  if (!taskList) return null;
+  const selectedTask = taskList.find(el => el.ticketCode === selectedTaskTicketCode);
+  if (!selectedTask) return null;
+  return selectedTask;
+});
+selectedTaskAtom.debugLabel = "selectedTask";
+
+export const showTaskModalAtom = atom(false);
+showTaskModalAtom.debugLabel = "showTaskModal";
 
 export const taskStore = createStore();
