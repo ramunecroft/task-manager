@@ -6,7 +6,7 @@ import {cn} from "@/lib/utils";
 import {fontSans} from "@/lib/fonts";
 import {SiteFooter} from "@/components/site-footer";
 import {QueryProvider} from "@/components/provider";
-import {API_URL} from "@/app/constants";
+import getDomain from "@/lib/get-domain";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,6 +23,12 @@ export const viewport: Viewport = {
 interface RootLayoutProps {
   children: React.ReactNode;
 }
+
+const domain = getDomain();
+
+console.log("processenv", process.env);
+
+console.log("domain", domain);
 
 export default function RootLayout({children}: Readonly<RootLayoutProps>) {
   return (

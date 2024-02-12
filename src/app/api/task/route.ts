@@ -6,8 +6,10 @@ import {NextResponse} from "next/server";
 export async function GET() {
   try {
     const taskList = await db.select().from(tasks);
+    console.log("taskList", taskList);
     return NextResponse.json(taskList);
   } catch (error) {
+    console.log("Error", error);
     return NextResponse.json({message: "Internal Server Error"}, {status: 500});
   }
 }

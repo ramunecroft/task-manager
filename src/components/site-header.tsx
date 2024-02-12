@@ -1,6 +1,6 @@
 "use client";
 
-import {CommandMenu} from "@/components/command-menu";
+// import {CommandMenu} from "@/components/command-menu";
 import {Icons} from "@/components/icons";
 import {MainNavigation} from "@/components/main-navigation";
 import Link from "next/link";
@@ -12,7 +12,7 @@ export function SiteHeader() {
         <MainNavigation />
         <div className="flex flex-1 justify-between space-x-2 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none">
-            <CommandMenu />
+            {/* <CommandMenu /> */}
           </div>
           <nav className="flex items-center justify-center">
             <Link
