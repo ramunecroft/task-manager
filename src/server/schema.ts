@@ -1,5 +1,14 @@
 import {relations, type InferInsertModel, type InferSelectModel} from "drizzle-orm";
-import {index, integer, pgEnum, pgTable, serial, text} from "drizzle-orm/pg-core";
+import {
+  index,
+  integer,
+  json,
+  pgEnum,
+  pgTable,
+  serial,
+  text,
+  timestamp,
+} from "drizzle-orm/pg-core";
 import {createInsertSchema, createSelectSchema} from "drizzle-zod";
 import {type z} from "zod";
 
@@ -50,6 +59,27 @@ export const tasks = pgTable(
 export const tasksRelations = relations(tasks, ({one}) => ({
   author: one(users, {
     fields: [tasks.ownerId],
+    references: [users.id],
+  }),
+}));
+
+const taskUpdateHistory = pgTable("task_updates", {
+  id: serial("id").primaryKey(),
+  taskId: integer("task_id").references(() => tasks.id, {onDelete: "cascade"}),
+  updatedByUserId: integer("updated_by_user_id").references(() => users.id),
+  updatedAt: timestamp("updated_at").defaultNow(),
+  previousValues: json("previous_values"), // Optional: to store previous values of the updated fields
+  newValues: json("new_values"), // Optional: to store new values of the updated fields
+  changeDescription: text("change_description"), // A description of what was changed
+});
+
+export const taskUpdateHistoryRelations = relations(taskUpdateHistory, ({one}) => ({
+  task: one(tasks, {
+    fields: [taskUpdateHistory.taskId],
+    references: [tasks.id],
+  }),
+  updatedByUser: one(users, {
+    fields: [taskUpdateHistory.updatedByUserId],
     references: [users.id],
   }),
 }));
