@@ -40,6 +40,7 @@ export const tasks = pgTable(
     ticketCode: text("ticketCode").notNull(),
     voteCount: integer("voteCount").default(0),
     ownerId: integer("owner_id").references(() => users.id, {onDelete: "cascade"}),
+    viewCount: integer("viewCount").default(0),
   },
   table => ({
     authorIdIndex: index("authorId_idx").on(table.ownerId),
