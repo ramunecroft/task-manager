@@ -1,5 +1,5 @@
 import {db} from "@/server";
-import {dragUpdateTaskSchema, tasks} from "@/server/schema";
+import {updateTaskStatusSchema, tasks} from "@/server/schema";
 import {eq} from "drizzle-orm";
 import {NextResponse} from "next/server";
 
@@ -15,7 +15,7 @@ export async function GET() {
 export async function PUT(request: Request) {
   try {
     const payload: unknown = await request.json();
-    const parsed = dragUpdateTaskSchema.safeParse(payload);
+    const parsed = updateTaskStatusSchema.safeParse(payload);
 
     if (!parsed.success) {
       return NextResponse.json({message: "Invalid request data"}, {status: 400});

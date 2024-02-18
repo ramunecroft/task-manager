@@ -1,6 +1,6 @@
 "use client";
 
-import {updateDraggingTask} from "@/client/api/task";
+import {updateTaskStatus} from "@/client/api/task";
 import {TaskCard} from "@/components/task-card";
 import {type Task} from "@/server/schema";
 import {mutateAtom, taskListAtom} from "@/store/task";
@@ -22,11 +22,19 @@ export const TaskSection = ({status}: TaskSectionType) => {
     );
     if (!draggingTask) return;
 
-    await updateDraggingTask({
+    await updateTaskStatus({
       status,
       ticketCode: draggingTask.ticketCode,
     });
-    await mutate(taskList);
+
+    const updated = taskList.map(task => {
+      if (task.ticketCode === draggingTask.ticketCode) {
+        task.status = status;
+      }
+      return task;
+    });
+
+    mutate(updated);
   };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {

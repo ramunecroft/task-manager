@@ -17,7 +17,7 @@ export const getTasks = async () => {
   return res.json();
 };
 
-export const updateDraggingTask = async ({status, ticketCode}: DragUpdateTaskInput) => {
+export const updateTaskStatus = async ({status, ticketCode}: DragUpdateTaskInput) => {
   const res = await fetch(`${API_URL}/api/task`, {
     method: "PUT",
     headers: {

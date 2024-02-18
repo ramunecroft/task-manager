@@ -1,4 +1,4 @@
-import {type InferInsertModel, type InferSelectModel, relations} from "drizzle-orm";
+import {relations, type InferInsertModel, type InferSelectModel} from "drizzle-orm";
 import {index, integer, pgEnum, pgTable, serial, text} from "drizzle-orm/pg-core";
 import {createInsertSchema, createSelectSchema} from "drizzle-zod";
 import {type z} from "zod";
@@ -60,7 +60,7 @@ export const selectUserSchema = createSelectSchema(users);
 
 export const insertTaskSchema = createInsertSchema(tasks);
 
-export const dragUpdateTaskSchema = insertTaskSchema.pick({
+export const updateTaskStatusSchema = insertTaskSchema.pick({
   ticketCode: true,
   status: true,
 });
@@ -75,4 +75,4 @@ export type Task = InferSelectModel<typeof tasks>;
 
 export type TaskInput = InferInsertModel<typeof tasks>;
 
-export type DragUpdateTaskInput = z.infer<typeof dragUpdateTaskSchema>;
+export type DragUpdateTaskInput = z.infer<typeof updateTaskStatusSchema>;

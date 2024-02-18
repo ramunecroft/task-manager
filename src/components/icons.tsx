@@ -1,4 +1,4 @@
-import {HomeIcon, UserIcon} from "lucide-react";
+import {Eye, HomeIcon, UserIcon} from "lucide-react";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -99,4 +99,5 @@ export const Icons = {
     </svg>
   ),
   user: (props: IconProps) => <UserIcon />,
+  eye: (props: IconProps) => <Eye />,
 };

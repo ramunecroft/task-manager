@@ -2,12 +2,11 @@
 
 import {Priority} from "@/app/constants";
 import {Icons} from "@/components/icons";
-import {TaskDetailModal} from "@/components/task-detail-modal";
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
 import {type Task} from "@/server/schema";
 import {selectedTaskTicketCodeAtom, showTaskModalAtom} from "@/store/task";
 import {useSetAtom} from "jotai";
-import React, {use} from "react";
+import React from "react";
 
 /**
  * title: title of task

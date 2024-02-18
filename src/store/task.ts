@@ -2,7 +2,7 @@
 
 import {getTasks} from "@/client/api/task";
 import {type Task} from "@/server/schema";
-import {atom, createStore} from "jotai";
+import {type WritableAtom, atom, createStore} from "jotai";
 
 export const messageAtom = atom("");
 
@@ -20,10 +20,12 @@ export const taskListAtom = atom(async get => {
 });
 taskListAtom.debugLabel = "taskList";
 
-export const mutateAtom = atom(null, async (get, set, taskList) => {
-  const data = (await getTasks()) as Task[];
-  set(taskMutationResultAtom, data);
-});
+export const mutateAtom: WritableAtom<null, [taskList: Task[]], void> = atom(
+  null,
+  (get, set, taskList) => {
+    set(taskMutationResultAtom, taskList);
+  }
+);
 
 export const selectedTaskTicketCodeAtom = atom<string | null>(null);
 selectedTaskTicketCodeAtom.debugPrivate = true;
