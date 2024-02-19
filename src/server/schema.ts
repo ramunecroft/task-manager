@@ -63,7 +63,7 @@ export const tasksRelations = relations(tasks, ({one}) => ({
   }),
 }));
 
-const taskUpdateHistory = pgTable("task_updates", {
+export const taskUpdateHistory = pgTable("task_updates", {
   id: serial("id").primaryKey(),
   taskId: integer("task_id").references(() => tasks.id, {onDelete: "cascade"}),
   updatedByUserId: integer("updated_by_user_id").references(() => users.id),
@@ -93,6 +93,8 @@ export const insertTaskSchema = createInsertSchema(tasks);
 export const updateTaskStatusSchema = insertTaskSchema.pick({
   ticketCode: true,
   status: true,
+  description: true,
+  title: true,
 });
 
 export const selectTaskSchema = createSelectSchema(tasks);

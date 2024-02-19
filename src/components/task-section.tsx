@@ -23,8 +23,8 @@ export const TaskSection = ({status}: TaskSectionType) => {
     if (!draggingTask) return;
 
     await updateTaskStatus({
+      ...draggingTask,
       status,
-      ticketCode: draggingTask.ticketCode,
     });
 
     const updated = taskList.map(task => {

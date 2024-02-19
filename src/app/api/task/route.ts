@@ -1,5 +1,5 @@
 import {db} from "@/server";
-import {updateTaskStatusSchema, tasks} from "@/server/schema";
+import {tasks, updateTaskStatusSchema} from "@/server/schema";
 import {eq} from "drizzle-orm";
 import {NextResponse} from "next/server";
 
@@ -21,13 +21,14 @@ export async function PUT(request: Request) {
       return NextResponse.json({message: "Invalid request data"}, {status: 400});
     }
 
-    const {status, ticketCode} = parsed.data;
+    const {status, ticketCode, title, description} = parsed.data;
 
     const result = await db
       .update(tasks)
-      .set({status: status})
+      .set({status, title, description})
       .where(eq(tasks.ticketCode, ticketCode))
       .returning();
+
     return NextResponse.json({message: "Task updated successfully", task: result});
   } catch (error) {
     return NextResponse.json({message: "Task updated failed"}, {status: 500});

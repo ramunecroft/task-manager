@@ -35,8 +35,8 @@ export const TaskDetailModal = () => {
 
   const onStatusChange = async (status: Task["status"]) => {
     await updateTaskStatus({
+      ...selectedTask,
       status,
-      ticketCode: selectedTask.ticketCode,
     });
 
     const updated = taskList.map(task => {
@@ -53,7 +53,7 @@ export const TaskDetailModal = () => {
       <DialogContent
         role={"task-modal"}
         className="mx-auto my-8 flex h-3/4 max-w-md flex-col items-start rounded-lg bg-white p-4 shadow-lg sm:max-w-xl md:max-w-6xl">
-        <div className="flex flex-col gap-y-2">
+        <div className="flex w-full flex-col gap-y-2">
           <div id="tool-tip w-full">
             <div className="flex w-full flex-grow flex-row items-center justify-between">
               <div className="flex items-center justify-center space-x-2">
