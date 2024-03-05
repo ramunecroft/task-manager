@@ -1,4 +1,4 @@
-import {Priority} from "@/app/constants";
+import {Priority} from "@/constants";
 
 interface DocsConfig {
   mainNav: {title: string; href: string}[];

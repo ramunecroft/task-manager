@@ -1,4 +1,4 @@
-import {API_URL} from "@/app/config";
+import {API_URL} from "@/config";
 import {type Task} from "@/server/schema";
 
 export const getTasks = async () => {
@@ -9,11 +9,9 @@ export const getTasks = async () => {
   });
 
   if (res.headers.get("content-type") !== "application/json") {
-    console.log("12345");
     return;
   }
   if (res.status === 200) {
-    console.log("res", res);
     return res.json();
   }
   return res.json();

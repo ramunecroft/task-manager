@@ -26,10 +26,6 @@ interface RootLayoutProps {
 
 const domain = getDomain();
 
-console.log("processenv", process.env);
-
-console.log("domain", domain);
-
 export default function RootLayout({children}: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">

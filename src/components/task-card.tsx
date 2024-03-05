@@ -1,6 +1,6 @@
 "use client";
 
-import {Priority} from "@/app/constants";
+import {Priority} from "@/constants";
 import {Icons} from "@/components/icons";
 import {
   Card,
