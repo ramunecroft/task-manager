@@ -1,4 +1,4 @@
-import {Eye, HomeIcon, UserIcon} from "lucide-react";
+import {ChevronDown, ChevronUp, Eye, HomeIcon, UserIcon} from "lucide-react";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -100,4 +100,6 @@ export const Icons = {
   ),
   user: (props: IconProps) => <UserIcon />,
   eye: (props: IconProps) => <Eye />,
+  chevronUp: (props: IconProps) => <ChevronUp />,
+  chevronDown: (props: IconProps) => <ChevronDown />,
 };
