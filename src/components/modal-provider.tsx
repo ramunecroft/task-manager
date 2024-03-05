@@ -1,11 +1,11 @@
 "use client";
 
-import {TaskDetailModal} from "@/components/task-detail-modal";
+import {TaskModal} from "@/components/task-modal";
 
 export const ModalProvider = ({children}: {children: React.ReactNode}) => {
   return (
     <>
-      <TaskDetailModal />
+      <TaskModal />
       {children}
     </>
   );

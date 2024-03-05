@@ -4,8 +4,8 @@ import {Priority} from "@/app/constants";
 import {Icons} from "@/components/icons";
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
 import {type Task} from "@/server/schema";
-import {selectedTaskTicketCodeAtom, showTaskModalAtom} from "@/store/task";
-import {useSetAtom} from "jotai";
+import {showTaskModalAtom, taskListAtom, taskModalAtom} from "@/store/task";
+import {useAtomValue, useSetAtom} from "jotai";
 import React from "react";
 
 /**
@@ -23,18 +23,21 @@ type TaskCardProps = {
 export const TaskCard = ({
   description,
   ticketCode,
-  voteCount = 0,
+  voteCount,
   priority,
 }: TaskCardProps) => {
-  const setSelectedTaskTicketCode = useSetAtom(selectedTaskTicketCodeAtom);
+  const taskList = useAtomValue(taskListAtom);
   const setShowTaskModal = useSetAtom(showTaskModalAtom);
+  const setTaskModal = useSetAtom(taskModalAtom);
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, ticketCode: string) => {
     e.dataTransfer.setData("text/plain", ticketCode);
   };
 
   const onClick = () => {
     setShowTaskModal(true);
-    setSelectedTaskTicketCode(ticketCode);
+    const findTask = taskList.find(el => el.ticketCode === ticketCode);
+    if (!findTask) return;
+    setTaskModal(findTask);
   };
 
   return (
