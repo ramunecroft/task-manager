@@ -30,6 +30,8 @@
     }
   },
   "dependencies": {
+    "@auth/core": "^0.28.0",
+    "@auth/drizzle-adapter": "^0.8.0",
     "@emotion/react": "^11.11.3",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "^1.0.5",
