@@ -43,7 +43,9 @@ const config = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/no-var-requires": "off",
+    "react-hooks/exhaustive-deps": "off",
   },
+  ignorePatterns: ["**/*.mjs"],
 };
 
 module.exports = config;
