@@ -15,6 +15,34 @@
       "when": 1709638733698,
       "tag": "0001_certain_brood",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1709642223372,
+      "tag": "0002_fresh_stardust",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1709642261593,
+      "tag": "0003_serious_union_jack",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1709719374188,
+      "tag": "0004_nostalgic_lily_hollister",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1709817925387,
+      "tag": "0005_typical_next_avengers",
+      "breakpoints": true
     }
   ]
 }
