@@ -2,14 +2,10 @@
 
 import {Priority} from "@/constants";
 import {Icons} from "@/components/icons";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from "@/components/ui/card";
+import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
 import {type Task} from "@/server/schema";
+import {showTaskModalAtom, taskListAtom, taskModalAtom} from "@/store/task";
+import {useAtomValue, useSetAtom} from "jotai";
 import React from "react";
 
 /**
@@ -27,15 +23,27 @@ type TaskCardProps = {
 export const TaskCard = ({
   description,
   ticketCode,
-  voteCount = 0,
+  voteCount,
   priority,
 }: TaskCardProps) => {
+  const taskList = useAtomValue(taskListAtom);
+  const setShowTaskModal = useSetAtom(showTaskModalAtom);
+  const setTaskModal = useSetAtom(taskModalAtom);
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, ticketCode: string) => {
     e.dataTransfer.setData("text/plain", ticketCode);
   };
 
+  const onClick = () => {
+    setShowTaskModal(true);
+    const findTask = taskList.find(el => el.ticketCode === ticketCode);
+    if (!findTask) return;
+    setTaskModal(findTask);
+  };
+
   return (
     <Card
+      role="task-card"
+      onClick={() => onClick()}
       onDragStart={e => handleDragStart(e, ticketCode)}
       className="w-full flex-1 hover:cursor-pointer hover:shadow-lg"
       draggable>
@@ -61,15 +69,15 @@ export const TaskCard = ({
   );
 };
 
-const PriorityIcon = ({level}: {level: TaskCardProps["priority"]}) => {
+export const PriorityIcon = ({level}: {level: Task["priority"]}) => {
   if (level === Priority.Lower) {
-    return <Icons.lower />;
+    return <Icons.lower data-testid={123} />;
   }
   if (level === Priority.Low) {
     return <Icons.low />;
   }
   if (level === Priority.Medium) {
-    return <Icons.medium />;
+    return <Icons.medium data-testid={125} />;
   }
   if (level === Priority.High) {
     return <Icons.high />;

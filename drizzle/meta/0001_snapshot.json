@@ -7,7 +7,6 @@
     "account": {
       "name": "account",
       "schema": "",
-      "columns": {
         "userId": {
           "name": "userId",
           "type": "text",
@@ -146,8 +145,6 @@
     },
     "tasks": {
       "name": "tasks",
-      "schema": "",
-      "columns": {
         "id": {
           "name": "id",
           "type": "serial",

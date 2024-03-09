@@ -3,6 +3,7 @@ import {type InferInsertModel, type InferSelectModel, relations} from "drizzle-o
 import {
   index,
   integer,
+  json,
   pgEnum,
   pgTable,
   primaryKey,
@@ -118,6 +119,7 @@ export const tasks = pgTable(
     ticketCode: text("ticketCode").notNull(),
     voteCount: integer("voteCount").default(0),
     ownerId: integer("owner_id").references(() => users.id, {onDelete: "cascade"}),
+    viewCount: integer("viewCount").default(0),
   },
   table => ({
     authorIdIndex: index("authorId_idx").on(table.ownerId),
@@ -131,15 +133,38 @@ export const tasksRelations = relations(tasks, ({one}) => ({
   }),
 }));
 
+export const taskUpdateHistory = pgTable("task_updates", {
+  id: serial("id").primaryKey(),
+  taskId: integer("task_id").references(() => tasks.id, {onDelete: "cascade"}),
+  updatedByUserId: integer("updated_by_user_id").references(() => users.id),
+  updatedAt: timestamp("updated_at").defaultNow(),
+  previousValues: json("previous_values"), // Optional: to store previous values of the updated fields
+  newValues: json("new_values"), // Optional: to store new values of the updated fields
+  changeDescription: text("change_description"), // A description of what was changed
+});
+
+export const taskUpdateHistoryRelations = relations(taskUpdateHistory, ({one}) => ({
+  task: one(tasks, {
+    fields: [taskUpdateHistory.taskId],
+    references: [tasks.id],
+  }),
+  updatedByUser: one(users, {
+    fields: [taskUpdateHistory.updatedByUserId],
+    references: [users.id],
+  }),
+}));
+
 export const insertUserSchema = createInsertSchema(users);
 
 export const selectUserSchema = createSelectSchema(users);
 
 export const insertTaskSchema = createInsertSchema(tasks);
 
-export const dragUpdateTaskSchema = insertTaskSchema.pick({
+export const updateTaskStatusSchema = insertTaskSchema.pick({
   ticketCode: true,
   status: true,
+  description: true,
+  title: true,
 });
 
 export const selectTaskSchema = createSelectSchema(tasks);
@@ -152,4 +177,4 @@ export type Task = InferSelectModel<typeof tasks>;
 
 export type TaskInput = InferInsertModel<typeof tasks>;
 
-export type DragUpdateTaskInput = z.infer<typeof dragUpdateTaskSchema>;
+export type DragUpdateTaskInput = z.infer<typeof updateTaskStatusSchema>;

@@ -1,4 +1,4 @@
-import {QueryProvider} from "@/components/provider";
+import {ModalProvider} from "@/components/modal-provider";
 import {Provider} from "@/components/providers";
 import {SiteFooter} from "@/components/site-footer";
 import {SiteHeader} from "@/components/site-header";
@@ -33,24 +33,24 @@ export default function RootLayout({children}: Readonly<RootLayoutProps>) {
           "min-h-screen bg-background font-sans antialiased",
           fontSans.className
         )}>
-        <QueryProvider>
-          <Provider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
-            <div vaul-drawer-wrapper="">
-              <div className="relative flex min-h-screen flex-col bg-background">
+        <Provider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <div vaul-drawer-wrapper="">
+            <div className="relative flex min-h-screen flex-col bg-background">
+              <ModalProvider>
                 <SiteHeader />
                 <main className="flex flex-1 items-center justify-center overflow-auto">
                   <Toaster />
                   {children}
                 </main>
                 <SiteFooter />
-              </div>
+              </ModalProvider>
             </div>
-          </Provider>
-        </QueryProvider>
+          </div>
+        </Provider>
       </body>
     </html>
   );

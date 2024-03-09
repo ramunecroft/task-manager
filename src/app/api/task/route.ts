@@ -1,6 +1,6 @@
 import {db} from "@/server";
 import {auth} from "@/server/auth.config";
-import {dragUpdateTaskSchema, tasks} from "@/server/schema";
+import {tasks, updateTaskStatusSchema} from "@/server/schema";
 import {eq} from "drizzle-orm";
 import {NextResponse} from "next/server";
 
@@ -16,19 +16,20 @@ export const GET = auth(async () => {
 export async function PUT(request: Request) {
   try {
     const payload: unknown = await request.json();
-    const parsed = dragUpdateTaskSchema.safeParse(payload);
+    const parsed = updateTaskStatusSchema.safeParse(payload);
 
     if (!parsed.success) {
       return NextResponse.json({message: "Invalid request data"}, {status: 400});
     }
 
-    const {status, ticketCode} = parsed.data;
+    const {status, ticketCode, title, description} = parsed.data;
 
     const result = await db
       .update(tasks)
-      .set({status: status})
+      .set({status, title, description})
       .where(eq(tasks.ticketCode, ticketCode))
       .returning();
+
     return NextResponse.json({message: "Task updated successfully", task: result});
   } catch (error) {
     return NextResponse.json({message: "Task updated failed"}, {status: 500});

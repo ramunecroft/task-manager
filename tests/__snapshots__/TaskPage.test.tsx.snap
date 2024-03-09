@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page render test renders a heading 1`] = `<div />`;
+
+exports[`Page renders a heading 1`] = `<div />`;
