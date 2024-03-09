@@ -1,4 +1,3 @@
-import {type Status, statuses} from "@/app/config/docs";
 import {Button} from "@/components/ui/button";
 import {
   Command,
@@ -9,6 +8,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
+import {statuses, type Status} from "@/config/docs";
 import React from "react";
 
 type TaskSelectProps = {
