@@ -2,7 +2,7 @@
 
 import {updateTaskStatus} from "@/client/api/task";
 import {TaskCard} from "@/components/task-card";
-import {type Task} from "@/server/schema";
+import {type Task} from "@/server/db/schema";
 import {mutateAtom, taskListAtom} from "@/store/task";
 import {useAtomValue, useSetAtom} from "jotai";
 import React, {type DragEvent} from "react";

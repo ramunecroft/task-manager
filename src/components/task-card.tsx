@@ -3,7 +3,7 @@
 import {Priority} from "@/constants";
 import {Icons} from "@/components/icons";
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
-import {type Task} from "@/server/schema";
+import {type Task} from "@/server/db/schema";
 import {showTaskModalAtom, taskListAtom, taskModalAtom} from "@/store/task";
 import {useAtomValue, useSetAtom} from "jotai";
 import React from "react";

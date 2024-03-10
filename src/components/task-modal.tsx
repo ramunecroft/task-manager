@@ -5,7 +5,7 @@ import {TaskModalActionPannel} from "@/components/task-modal-action-pannel";
 import {TaskModalHeader} from "@/components/task-modal-header";
 import {TaskModalOverview} from "@/components/task-modal-overview";
 import {Dialog, DialogContent} from "@/components/ui/dialog";
-import {type Task} from "@/server/schema";
+import {type Task} from "@/server/db/schema";
 import {mutateAtom, showTaskModalAtom, taskListAtom, taskModalAtom} from "@/store/task";
 import {useAtom, useAtomValue, useSetAtom} from "jotai";
 import React from "react";

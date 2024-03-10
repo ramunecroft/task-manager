@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {cn} from "@/lib/utils";
-import {type Task} from "@/server/schema";
+import {type Task} from "@/server/db/schema";
 import {ArrowUp, ArrowDown, CheckIcon, BanIcon} from "lucide-react";
 import React from "react";
 

@@ -1,5 +1,6 @@
 import {API_URL} from "@/config";
-import {type DragUpdateTaskInput} from "@/server/schema";
+import {fetch} from "@/lib/utils";
+import {type DragUpdateTaskInput} from "@/server/db/schema";
 
 export const getTasks = async () => {
   const res = await fetch(`${API_URL}/api/task`, {

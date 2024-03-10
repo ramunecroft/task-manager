@@ -1,6 +1,6 @@
-import {db} from "@/server";
+import {db} from "@/server/db";
 import {auth} from "@/server/auth.config";
-import {tasks, updateTaskStatusSchema} from "@/server/schema";
+import {tasks, updateTaskStatusSchema} from "@/server/db/schema";
 import {eq} from "drizzle-orm";
 import {NextResponse} from "next/server";
 
