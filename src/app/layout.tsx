@@ -6,9 +6,9 @@ import {Toaster} from "@/components/ui/toaster";
 import {fontSans} from "@/lib/fonts";
 import {cn} from "@/lib/utils";
 import {auth} from "@/server/auth";
-import {SessionProvider} from "next-auth/react";
 import "@/styles/globals.css";
 import type {Metadata, Viewport} from "next";
+import {SessionProvider} from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,7 +31,7 @@ export default async function RootLayout({children}: Readonly<RootLayoutProps>) 
 
   return (
     <SessionProvider session={session}>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <head />
         <body
           className={cn(
