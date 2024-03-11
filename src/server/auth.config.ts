@@ -3,6 +3,7 @@ import {signInSchema} from "@/server/db/schema";
 import {getUserByEmail} from "@/server/users";
 import Credentials from "@auth/core/providers/credentials";
 import {type NextAuthConfig} from "next-auth";
+import GitHub from "@auth/core/providers/github";
 
 export default {
   providers: [
@@ -23,6 +24,10 @@ export default {
 
         return null;
       },
+    }),
+    GitHub({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
 } satisfies NextAuthConfig;

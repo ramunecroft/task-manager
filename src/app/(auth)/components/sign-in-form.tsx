@@ -1,6 +1,5 @@
 "use client";
 
-import {SignIn} from "@/server/actions/sign-in";
 import {FormError} from "@/app/(auth)/components/form-error";
 import {Button} from "@/components/ui/button";
 import {
@@ -12,9 +11,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
+import {SignIn} from "@/server/actions/sign-in";
 import {signInSchema} from "@/server/db/schema";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {BanIcon} from "lucide-react";
 import React from "react";
 import {useForm} from "react-hook-form";
 import {type z} from "zod";
@@ -38,7 +37,7 @@ export const SignInForm = () => {
   return (
     <Form {...form}>
       <form
-        className="flex max-w-[500px] flex-1 flex-col gap-4"
+        className="flex w-full flex-1 flex-col gap-4"
         onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}

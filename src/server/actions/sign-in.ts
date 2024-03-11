@@ -4,8 +4,8 @@ import {type ActionResult} from "@/index";
 import {signIn as NextAuthSignIn} from "@/server/auth";
 import {signInSchema} from "@/server/db/schema";
 import {type z} from "zod";
-import {DEFAULT_LOGIN_REDIRECT} from "../../../routes";
 import {AuthError} from "next-auth";
+import {DEFAULT_LOGIN_REDIRECT} from "../../../routes";
 
 export const SignIn = async (
   values: z.infer<typeof signInSchema>

@@ -11,3 +11,5 @@ export function atomWithRefresh<T>(fn: (get: Getter) => T) {
     (_, set) => set(refreshCounter, i => i + 1)
   );
 }
+
+export const loadingAtom = atom(false);
