@@ -2,7 +2,7 @@
 
 import {Button} from "@/components/ui/button";
 import {signIn} from "next-auth/react";
-import {DEFAULT_LOGIN_REDIRECT} from "../../../../routes";
+import {DEFAULT_LOGIN_REDIRECT} from "../../../routes";
 import {Icons} from "@/components/icons";
 
 export const SocialButtons = () => {
