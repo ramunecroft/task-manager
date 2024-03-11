@@ -1,15 +1,12 @@
-import NextAuth from "next-auth";
-import authConfig from "@/server/auth.config";
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
   authRoutes,
   publicRoutes,
-} from "./routes";
+} from "@/routes";
+import {auth} from "@/auth";
 
-export const {auth: middleware} = NextAuth(authConfig);
-
-export default middleware(req => {
+export default auth(req => {
   const {nextUrl} = req;
   const isLoggedIn = !!req.auth;
 
@@ -17,19 +14,20 @@ export default middleware(req => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  if (isApiAuthRoute) {
-    return;
-  }
+  // if (isApiAuthRoute) {
+  //   return;
+  // }
+  // if (isAuthRoute) {
+  //   if (isLoggedIn) {
+  //     return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+  //   }
+  //   return;
+  // }
+  // if (!isLoggedIn && !isPublicRoute) {
+  //   return Response.redirect(new URL("/sign-up", nextUrl));
+  // }
 
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-    }
-  }
-
-  if (!isLoggedIn && !isPublicRoute) {
-    return Response.redirect(new URL("/sign-up", nextUrl));
-  }
+  // return;
 });
 
 /**

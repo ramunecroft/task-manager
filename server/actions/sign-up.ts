@@ -1,6 +1,6 @@
 "use server";
 
-import {type ActionResult} from "@/index";
+import {type ActionResult} from "@/types/index";
 import {signUpSchema, users} from "@/server/db/schema";
 import {type z} from "zod";
 import bcrypt from "bcryptjs";

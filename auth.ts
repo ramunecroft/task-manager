@@ -1,4 +1,4 @@
-import authConfig from "@/server/auth.config";
+import authConfig from "@/auth.config";
 import NextAuth from "next-auth";
 import {DrizzleAdapter} from "@auth/drizzle-adapter";
 import {db} from "@/server/db";
@@ -7,9 +7,9 @@ import {getUserById} from "@/server/users";
 
 export const {
   handlers: {GET, POST},
-  auth,
   signIn,
   signOut,
+  auth,
 } = NextAuth({
   pages: {
     signIn: "/sign-in",

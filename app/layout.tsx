@@ -5,7 +5,7 @@ import {SiteHeader} from "@/components/site-header";
 import {Toaster} from "@/components/ui/toaster";
 import {fontSans} from "@/lib/fonts";
 import {cn} from "@/lib/utils";
-import {auth} from "@/server/auth";
+import {auth} from "@/auth";
 import "@/styles/globals.css";
 import type {Metadata, Viewport} from "next";
 import {SessionProvider} from "next-auth/react";

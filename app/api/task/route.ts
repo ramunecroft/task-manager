@@ -1,4 +1,4 @@
-import {auth} from "@/server/auth";
+import {auth} from "@/auth";
 import {db} from "@/server/db";
 import {tasks, updateTaskStatusSchema} from "@/server/db/schema";
 import {eq} from "drizzle-orm";
