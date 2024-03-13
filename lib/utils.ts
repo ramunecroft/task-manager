@@ -1,4 +1,6 @@
+import {progressTriggeredAtom} from "@/store";
 import {clsx, type ClassValue} from "clsx";
+import {useSetAtom} from "jotai";
 import {twMerge} from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -16,14 +18,15 @@ export function formatDate(date: Date, formatStr: string): string {
     .replace("dd", day);
 }
 
-async function apiFetch(
+async function ApiFetch(
   url: string,
   options: RequestInit,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload?: any
-): Promise<Response> {
-  const response = await fetch(url, {...options, body: JSON.stringify(payload)});
-  return response;
+) {
+  const setProgressTriggered = useSetAtom(progressTriggeredAtom);
+  setProgressTriggered(true);
+  return await fetch(url, {...options, body: JSON.stringify(payload)});
 }
 
-export {apiFetch as fetch};
+export {ApiFetch as fetch};

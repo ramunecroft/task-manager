@@ -13,12 +13,15 @@ import {
 import {Input} from "@/components/ui/input";
 import {SignIn} from "@/server/actions/sign-in";
 import {signInSchema} from "@/server/db/schema";
+import {progressTriggeredAtom} from "@/store";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {useSetAtom} from "jotai";
 import React from "react";
 import {useForm} from "react-hook-form";
 import {type z} from "zod";
 
 export const SignInForm = () => {
+  const setProgressTriggered = useSetAtom(progressTriggeredAtom);
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [isPending, startTransition] = React.useTransition();
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -30,8 +33,12 @@ export const SignInForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof signInSchema>) => {
+    setProgressTriggered(true);
     startTransition(async () => {
       const result = await SignIn(values);
+      if (!result.isSuccess) {
+        setErrorMessage(result.error.message);
+      }
     });
   };
   return (
