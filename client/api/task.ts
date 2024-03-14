@@ -1,4 +1,5 @@
 import {API_URL} from "@/config";
+import {fetch} from "@/lib/utils";
 import {type Task} from "@/server/db/schema";
 
 export const getTasks = async () => {
