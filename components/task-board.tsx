@@ -2,6 +2,7 @@ import {TaskSection} from "@/components/task-section";
 import {Button} from "@/components/ui/button";
 import {FolderIcon} from "lucide-react";
 import Link from "next/link";
+import {Suspense} from "react";
 
 export const TaskBoard = () => {
   return (

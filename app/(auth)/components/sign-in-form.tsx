@@ -32,6 +32,11 @@ export const SignInForm = () => {
   const onSubmit = (values: z.infer<typeof signInSchema>) => {
     startTransition(async () => {
       const result = await SignIn(values);
+
+      if (!result.isSuccess) {
+        setErrorMessage(result.error.message);
+        return;
+      }
     });
   };
   return (

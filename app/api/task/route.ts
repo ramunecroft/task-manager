@@ -24,13 +24,13 @@ export async function PUT(request: Request) {
 
     const {status, ticketCode, title, description} = parsed.data;
 
-    const result = await db
+    const [result] = await db
       .update(tasks)
       .set({status, title, description})
       .where(eq(tasks.ticketCode, ticketCode))
       .returning();
 
-    return NextResponse.json({message: "Task updated successfully", task: result});
+    return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json({message: "Task updated failed"}, {status: 500});
   }

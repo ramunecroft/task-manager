@@ -4,18 +4,13 @@ import {CommandMenu} from "@/components/command-menu";
 import {Icons} from "@/components/icons";
 import {MainNavigation} from "@/components/main-navigation";
 import {Progress} from "@/components/ui/progress";
-import {useToast} from "@/components/ui/use-toast";
-import {loadingAtom} from "@/store";
-import {useAtom} from "jotai";
-import {LogInIcon, LogOutIcon} from "lucide-react";
+import {LogOutIcon} from "lucide-react";
 import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
-import React from "react";
 
 export function SiteHeader() {
   const session = useSession();
   const user = session.data?.user;
-  const [progressValue, setProgressValue] = React.useState(0);
 
   const handleSignOut = async () => {
     await signOut();
@@ -23,7 +18,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 flex w-full flex-col border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Progress value={progressValue} />
+      <Progress />
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <MainNavigation />
         <div className="flex flex-1 justify-between space-x-2 md:justify-end">
@@ -45,7 +40,7 @@ export function SiteHeader() {
                 className="flex items-center justify-center"
                 rel="noreferrer"
                 href={"sign-in"}>
-                <LogInIcon />
+                <Icons.user />
               </Link>
             )}
           </nav>
