@@ -24,8 +24,6 @@ async function ApiFetch(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload?: any
 ) {
-  const setProgressTriggered = useSetAtom(progressTriggeredAtom);
-  setProgressTriggered(true);
   return await fetch(url, {...options, body: JSON.stringify(payload)});
 }
 
