@@ -1,10 +1,10 @@
 "use client";
 
-import {updateTaskStatus} from "@/client/api/task";
+import {getTasks, updateTaskStatus} from "@/client/api/task";
 import {TaskCard} from "@/components/task-card";
+import {QUERY_KEY} from "@/constants";
 import {type Task} from "@/server/db/schema";
-import {mutateAtom, taskListAtom} from "@/store/task";
-import {useAtomValue, useSetAtom} from "jotai";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import React, {type DragEvent} from "react";
 
 type TaskSectionType = {
@@ -12,29 +12,41 @@ type TaskSectionType = {
 };
 
 export const TaskSection = ({status}: TaskSectionType) => {
-  const taskList = useAtomValue(taskListAtom);
-  const mutate = useSetAtom(mutateAtom);
+  const queryClient = useQueryClient();
 
-  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+  const {data: taskList} = useQuery<Task[]>({
+    queryKey: [QUERY_KEY.tasklist],
+    queryFn: () => getTasks(),
+  });
+
+  const mutation = useMutation<Task, Error, Task, {previousTasks?: Task[]}>({
+    mutationFn: updateTaskStatus,
+    onSuccess: newTask => {
+      queryClient.setQueryData<Task[] | undefined>([QUERY_KEY.tasklist], prev =>
+        prev?.map(task =>
+          task.ticketCode === newTask.ticketCode
+            ? {...task, status: newTask.status}
+            : task
+        )
+      );
+    },
+    onError: (error, newTask, context) => {
+      queryClient.setQueryData<Task[]>([QUERY_KEY.tasklist], context?.previousTasks);
+    },
+  });
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const draggingTask = taskList?.find(
-      task => task.ticketCode === e.dataTransfer.getData("text/plain")
-    );
+    const ticketCode = e.dataTransfer.getData("text/plain");
+    const draggingTask = taskList?.find(task => task.ticketCode === ticketCode);
     if (!draggingTask) return;
 
-    await updateTaskStatus({
+    const newTask = {
       ...draggingTask,
       status,
-    });
+    } satisfies Task;
 
-    const updated = taskList.map(task => {
-      if (task.ticketCode === draggingTask.ticketCode) {
-        task.status = status;
-      }
-      return task;
-    });
-
-    mutate(updated);
+    mutation.mutate(newTask);
   };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
@@ -50,21 +62,17 @@ export const TaskSection = ({status}: TaskSectionType) => {
         <h3 className="text-md mx-4 my-2 font-semibold text-gray-500 dark:text-white">
           {status.split("_").join(" ")}
         </h3>
-        {Array.isArray(taskList) ? (
-          taskList
-            .filter(task => task.status === status)
-            .map((task, index) => (
-              <TaskCard
-                key={task.ticketCode}
-                description={task.description}
-                ticketCode={task.ticketCode}
-                priority={task.priority}
-                voteCount={task.voteCount}
-              />
-            ))
-        ) : (
-          <h1>No Data</h1>
-        )}
+        {taskList
+          ?.filter(task => task.status === status)
+          .map((task, index) => (
+            <TaskCard
+              key={task.ticketCode}
+              description={task.description}
+              ticketCode={task.ticketCode}
+              priority={task.priority}
+              voteCount={task.voteCount}
+            />
+          ))}
       </div>
     </div>
   );

@@ -1,37 +1,54 @@
 "use client";
 
-import {updateTaskStatus} from "@/client/api/task";
+import {getTasks, updateTaskStatus} from "@/client/api/task";
 import {TaskModalActionPannel} from "@/components/task-modal-action-pannel";
 import {TaskModalHeader} from "@/components/task-modal-header";
 import {TaskModalOverview} from "@/components/task-modal-overview";
 import {Dialog, DialogContent} from "@/components/ui/dialog";
+import {QUERY_KEY} from "@/constants";
 import {type Task} from "@/server/db/schema";
-import {mutateAtom, showTaskModalAtom, taskListAtom, taskModalAtom} from "@/store/task";
-import {useAtom, useAtomValue, useSetAtom} from "jotai";
+import {showTaskModalAtom, taskModalAtom} from "@/store/task";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {useAtom, useAtomValue} from "jotai";
 import React from "react";
 
 export const TaskModal = () => {
+  const queryClient = useQueryClient();
+  const {data: taskList} = useQuery<Task[]>({
+    queryKey: [QUERY_KEY.tasklist],
+    queryFn: () => getTasks(),
+  });
+
+  const mutation = useMutation({
+    mutationFn: updateTaskStatus,
+    onSuccess: data => {
+      queryClient.setQueryData<Task[] | undefined>(["taskList"], prev => {
+        return prev?.map(el => {
+          if (el.ticketCode === data.ticketCode) {
+            return {
+              ...el,
+              status: data.status,
+            };
+          }
+          return el;
+        });
+      });
+    },
+  });
+
   const [showTaskModal, setShowTaskModal] = useAtom(showTaskModalAtom);
   const taskModal = useAtomValue(taskModalAtom);
-  const taskList = useAtomValue(taskListAtom);
-  const mutate = useSetAtom(mutateAtom);
   const [isOpen, setIsOpen] = React.useState(false);
+
+  if (!taskList) return;
 
   if (!taskModal) return;
 
-  const onStatusChange = async (status: Task["status"]) => {
-    await updateTaskStatus({
+  const onStatusChange = (status: Task["status"]) => {
+    mutation.mutate({
       ...taskModal,
       status,
     });
-
-    const updated = taskList.map(task => {
-      if (task.ticketCode === taskModal.ticketCode) {
-        task.status = status;
-      }
-      return task;
-    });
-    mutate(updated);
   };
 
   return (

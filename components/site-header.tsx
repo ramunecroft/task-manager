@@ -4,10 +4,9 @@ import {CommandMenu} from "@/components/command-menu";
 import {Icons} from "@/components/icons";
 import {MainNavigation} from "@/components/main-navigation";
 import {Progress} from "@/components/ui/progress";
-import {LogInIcon, LogOutIcon} from "lucide-react";
+import {LogOutIcon} from "lucide-react";
 import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
-import React from "react";
 
 export function SiteHeader() {
   const session = useSession();
@@ -41,7 +40,7 @@ export function SiteHeader() {
                 className="flex items-center justify-center"
                 rel="noreferrer"
                 href={"sign-in"}>
-                <LogInIcon />
+                <Icons.user />
               </Link>
             )}
           </nav>

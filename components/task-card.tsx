@@ -1,11 +1,13 @@
 "use client";
 
-import {Priority} from "@/constants";
+import {getTasks} from "@/client/api/task";
 import {Icons} from "@/components/icons";
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
+import {Priority, QUERY_KEY} from "@/constants";
 import {type Task} from "@/server/db/schema";
-import {showTaskModalAtom, taskListAtom, taskModalAtom} from "@/store/task";
-import {useAtomValue, useSetAtom} from "jotai";
+import {showTaskModalAtom, taskModalAtom} from "@/store/task";
+import {useQuery} from "@tanstack/react-query";
+import {useSetAtom} from "jotai";
 import React from "react";
 
 /**
@@ -26,16 +28,27 @@ export const TaskCard = ({
   voteCount,
   priority,
 }: TaskCardProps) => {
-  const taskList = useAtomValue(taskListAtom);
+  const {
+    data: taskList,
+    isLoading,
+    isError,
+  } = useQuery<Task[]>({
+    queryKey: [QUERY_KEY.tasklist],
+    queryFn: () => getTasks(),
+  });
+
   const setShowTaskModal = useSetAtom(showTaskModalAtom);
   const setTaskModal = useSetAtom(taskModalAtom);
+
+  if (!taskList) return null;
+
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, ticketCode: string) => {
     e.dataTransfer.setData("text/plain", ticketCode);
   };
 
   const onClick = () => {
     setShowTaskModal(true);
-    const findTask = taskList.find(el => el.ticketCode === ticketCode);
+    const findTask = taskList?.find(el => el.ticketCode === ticketCode);
     if (!findTask) return;
     setTaskModal(findTask);
   };

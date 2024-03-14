@@ -36,8 +36,10 @@ export const SignInForm = () => {
     setProgressTriggered(true);
     startTransition(async () => {
       const result = await SignIn(values);
+
       if (!result.isSuccess) {
         setErrorMessage(result.error.message);
+        return;
       }
     });
   };

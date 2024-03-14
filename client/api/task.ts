@@ -1,6 +1,6 @@
 import {API_URL} from "@/config";
 import {fetch} from "@/lib/utils";
-import {type DragUpdateTaskInput} from "@/server/db/schema";
+import {type Task} from "@/server/db/schema";
 
 export const getTasks = async () => {
   const res = await fetch(`${API_URL}/api/task`, {
@@ -18,24 +18,19 @@ export const getTasks = async () => {
   return res.json();
 };
 
-export const updateTaskStatus = async ({
-  status,
-  ticketCode,
-  title,
-  description,
-}: DragUpdateTaskInput) => {
+export const updateTaskStatus = async (task: Task) => {
   const res = await fetch(`${API_URL}/api/task`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      title,
-      description,
-      ticketCode,
-      status,
+      title: task.title,
+      description: task.description,
+      ticketCode: task.ticketCode,
+      status: task.status,
     }),
   });
 
-  return res.json();
+  return res.json() as Promise<Task>;
 };
