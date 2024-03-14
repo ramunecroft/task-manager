@@ -1,4 +1,4 @@
-import {db} from "@/server";
+import {db} from "@/server/db";
 import {migrate} from "drizzle-orm/postgres-js/migrator";
 const main = async () => {
   try {

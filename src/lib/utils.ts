@@ -16,10 +16,11 @@ export function formatDate(date: Date, formatStr: string): string {
     .replace("dd", day);
 }
 
-async function apiFetch<Res, Req>(
+async function apiFetch(
   url: string,
   options: RequestInit,
-  payload?: Req
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  payload?: any
 ): Promise<Response> {
   const response = await fetch(url, {...options, body: JSON.stringify(payload)});
   return response;

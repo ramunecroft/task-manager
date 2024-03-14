@@ -1,7 +1,7 @@
 "use client";
 
 import {getTasks} from "@/client/api/task";
-import {type Task} from "@/server/schema";
+import {type Task} from "@/server/db/schema";
 import {atom, createStore, type WritableAtom} from "jotai";
 
 export const messageAtom = atom("");

@@ -1,12 +1,13 @@
 {
-  "id": "8c040387-ecb6-47ad-9ec3-a66a0fc18787",
-  "prevId": "1495271d-a63e-434b-aa0d-7c9a74f27ea0",
+  "id": "949fec66-99eb-4119-a93b-1a9534b86f40",
+  "prevId": "659797aa-36c4-4ba6-8f17-750a0fd218dc",
   "version": "5",
   "dialect": "pg",
   "tables": {
     "account": {
       "name": "account",
       "schema": "",
+      "columns": {
         "userId": {
           "name": "userId",
           "type": "text",
@@ -145,6 +146,8 @@
     },
     "tasks": {
       "name": "tasks",
+      "schema": "",
+      "columns": {
         "id": {
           "name": "id",
           "type": "serial",
@@ -238,6 +241,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "emailVerified": {
           "name": "emailVerified",
           "type": "timestamp",
@@ -248,7 +257,8 @@
           "name": "user",
           "type": "role",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": "'user'"
         }
       },
       "indexes": {},

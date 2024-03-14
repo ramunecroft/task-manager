@@ -1,6 +1,6 @@
 import {Icons} from "@/components/icons";
 import {PriorityIcon} from "@/components/task-card";
-import {type Task} from "@/server/schema";
+import {type Task} from "@/server/db/schema";
 
 type TaskDetailModalHeaderProps = {
   task: Task;

@@ -1,16 +1,17 @@
-import {db} from "@/server";
-import {tasks, updateTaskStatusSchema} from "@/server/schema";
+import {auth} from "@/server/auth";
+import {db} from "@/server/db";
+import {tasks, updateTaskStatusSchema} from "@/server/db/schema";
 import {eq} from "drizzle-orm";
 import {NextResponse} from "next/server";
 
-export async function GET() {
+export const GET = auth(async () => {
   try {
     const taskList = await db.select().from(tasks);
     return NextResponse.json(taskList);
   } catch (error) {
     return NextResponse.json({message: "Internal Server Error"}, {status: 500});
   }
-}
+});
 
 export async function PUT(request: Request) {
   try {
