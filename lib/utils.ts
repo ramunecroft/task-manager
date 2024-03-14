@@ -20,11 +20,17 @@ export function formatDate(date: Date, formatStr: string): string {
 
 async function ApiFetch(
   url: string,
-  options: RequestInit,
+  options?: RequestInit,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload?: any
 ) {
-  return await fetch(url, {...options, body: JSON.stringify(payload)});
+  const apiOptions = {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  return await fetch(url, {...apiOptions, body: JSON.stringify(payload)});
 }
 
 export {ApiFetch as fetch};

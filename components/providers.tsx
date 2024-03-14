@@ -1,7 +1,7 @@
 "use client";
 
 import {ThemeProvider as NextThemesProvider} from "next-themes";
-
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import {ToastProvider} from "@/components/ui/toast";
 import {TooltipProvider} from "@/components/ui/tooltip";
 import {DevTools} from "jotai-devtools";
@@ -25,6 +25,7 @@ export function Provider({children, ...props}: ThemeProviderProps) {
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
           <DevTools />
+          <ReactQueryDevtools initialIsOpen={false} />
           <TooltipProvider>{children}</TooltipProvider>
         </ToastProvider>
       </QueryClientProvider>

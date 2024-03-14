@@ -34,6 +34,9 @@ export const TaskModal = () => {
         });
       });
     },
+    onError: error => {
+      console.error(error);
+    },
   });
 
   const [showTaskModal, setShowTaskModal] = useAtom(showTaskModalAtom);

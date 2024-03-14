@@ -3,11 +3,7 @@ import {fetch} from "@/lib/utils";
 import {type DragUpdateTaskInput, type Task} from "@/server/db/schema";
 
 export const getTasks = async () => {
-  const res = await fetch(`${API_URL}/api/task`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const res = await fetch(`${API_URL}/api/task`);
 
   if (res.headers.get("content-type") !== "application/json") {
     return;
@@ -29,9 +25,6 @@ export const updateTaskStatus = async (task: Task) => {
     `${API_URL}/api/task`,
     {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
     },
     requestBody
   );
