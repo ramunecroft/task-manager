@@ -1,9 +1,9 @@
 "use client";
 
-import {updateDraggingTask} from "@/client/api/task";
+import {updateTaskStatus} from "@/client/api/task";
 import {TaskCard} from "@/components/task-card";
 import {type Task} from "@/server/schema";
-import {mutateAtom, postAtom} from "@/store/task";
+import {mutateAtom, taskListAtom} from "@/store/task";
 import {useAtomValue, useSetAtom} from "jotai";
 import React, {type DragEvent} from "react";
 
@@ -12,7 +12,7 @@ type TaskSectionType = {
 };
 
 export const TaskSection = ({status}: TaskSectionType) => {
-  const taskList = useAtomValue(postAtom);
+  const taskList = useAtomValue(taskListAtom);
   const mutate = useSetAtom(mutateAtom);
 
   const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
@@ -22,8 +22,19 @@ export const TaskSection = ({status}: TaskSectionType) => {
     );
     if (!draggingTask) return;
 
-    await updateDraggingTask(draggingTask.ticketCode, status);
-    await mutate(taskList);
+    await updateTaskStatus({
+      ...draggingTask,
+      status,
+    });
+
+    const updated = taskList.map(task => {
+      if (task.ticketCode === draggingTask.ticketCode) {
+        task.status = status;
+      }
+      return task;
+    });
+
+    mutate(updated);
   };
 
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => {

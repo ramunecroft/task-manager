@@ -1,7 +1,9 @@
-import {HomeIcon, UserIcon} from "lucide-react";
+import {ChevronDown, ChevronUp, Eye, HomeIcon, UserIcon} from "lucide-react";
+
+type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
-  github: () => (
+  github: (props: IconProps) => (
     <div className="inline-flex items-center justify-center whitespace-nowrap hover:cursor-pointer">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -16,9 +18,9 @@ export const Icons = {
       </svg>
     </div>
   ),
-  home: () => <HomeIcon />,
+  home: (props: IconProps) => <HomeIcon />,
 
-  low: () => (
+  low: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
       <path
         d="M12.5 6.1c.5-.3 1.1-.1 1.4.4.3.5.1 1.1-.3 1.3l-5 3c-.3.2-.7.2-1 0l-5-3c-.6-.2-.7-.9-.4-1.3.2-.5.9-.7 1.3-.4L8 8.8l4.5-2.7z"
@@ -26,7 +28,7 @@ export const Icons = {
       />
     </svg>
   ),
-  lower: () => (
+  lower: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
       <path
         d="M12.504883 8.14541c.5-.3 1.1-.1 1.4.4s.1 1-.4 1.3l-5 3c-.3.2-.7.2-1 0l-5-3c-.5-.3-.6-.9-.3-1.4.2-.4.8-.6 1.3-.3l4.5 2.7 4.5-2.7z"
@@ -38,13 +40,13 @@ export const Icons = {
       />
     </svg>
   ),
-  medium: () => (
+  medium: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
       <path d="M3 5h10v2H3z" fill="#ff5630" />
       <path d="M3 9h10v2H3z" fill="#ff7452" />
     </svg>
   ),
-  high: () => (
+  high: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
       <path
         d="M3.5 9.9c-.5.3-1.1.1-1.4-.3s-.1-1.1.4-1.4l5-3c.3-.2.7-.2 1 0l5 3c.5.3.6.9.3 1.4-.3.5-.9.6-1.4.3L8 7.2 3.5 9.9z"
@@ -52,7 +54,7 @@ export const Icons = {
       />
     </svg>
   ),
-  highest: () => (
+  highest: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className="h-4 w-4">
       <path
         d="M3.47876 7.9c-.5.3-1.1.1-1.4-.4s-.1-1 .4-1.3l5-3c.3-.2.7-.2 1 0l5 3c.5.3.6.9.3 1.4-.2.4-.8.6-1.3.3l-4.5-2.7-4.5 2.7z"
@@ -64,7 +66,7 @@ export const Icons = {
       />
     </svg>
   ),
-  bug: () => (
+  bug: (props: IconProps) => (
     <svg
       width="112"
       height="112"
@@ -78,7 +80,7 @@ export const Icons = {
       />
     </svg>
   ),
-  story: () => (
+  story: (props: IconProps) => (
     <svg
       viewBox="0 0 112 112"
       fill="none"
@@ -96,5 +98,8 @@ export const Icons = {
       />
     </svg>
   ),
-  user: () => <UserIcon />,
+  user: (props: IconProps) => <UserIcon />,
+  eye: (props: IconProps) => <Eye />,
+  chevronUp: (props: IconProps) => <ChevronUp />,
+  chevronDown: (props: IconProps) => <ChevronDown />,
 };

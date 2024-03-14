@@ -1,0 +1,1 @@
+ALTER TABLE "tasks" ADD COLUMN "viewCount" integer DEFAULT 0;
