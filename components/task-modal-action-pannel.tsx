@@ -1,4 +1,5 @@
 import {TaskSelect} from "@/components/task-select";
+import {TaskSelectDate} from "@/components/task-select-date";
 import {Button} from "@/components/ui/button";
 import {
   Collapsible,
@@ -6,48 +7,40 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
-import {Input} from "@/components/ui/input";
-import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
-
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {cn} from "@/lib/utils";
+import {useTaskMutation} from "@/hooks/use-task-mutation";
 import {type Task} from "@/server/db/schema";
-import {ArrowUp, ArrowDown, CheckIcon, BanIcon} from "lucide-react";
+import {taskModalAtom} from "@/store/task";
+import {useAtomValue} from "jotai";
+import {ChevronDown, ChevronUp} from "lucide-react";
 import React from "react";
 
-type TaskDetailModalActionPannelProps = {
-  isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
-  selectedTask: Task;
-  onStatusChange: (status: Task["status"]) => void;
-};
+export const TaskModalActionPannel = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
+  const taskModal = useAtomValue(taskModalAtom);
+  const {mutate: taskMutate} = useTaskMutation();
 
-export const TaskModalActionPannel = ({
-  isOpen,
-  setIsOpen,
-  selectedTask,
-  onStatusChange,
-}: TaskDetailModalActionPannelProps) => {
+  if (!taskModal) return;
+
+  const onStatusChange = (status: Task["status"]) => {
+    taskMutate({
+      ...taskModal,
+      status,
+    });
+  };
+
   return (
     <div
       id="task-detail-modal-action-pannel"
       className="col-span-2 flex flex-col gap-y-4">
       <Select onValueChange={(e: Task["status"]) => onStatusChange(e)}>
         <SelectTrigger className="bg-gray-100 font-extrabold">
-          <SelectValue placeholder={selectedTask.status.split("_").join(" ")} />
+          <SelectValue placeholder={taskModal.status.split("_").join(" ")} />
         </SelectTrigger>
         <SelectContent className="font-extrabold">
           <SelectItem value="TO_DO">TO DO</SelectItem>
@@ -61,14 +54,20 @@ export const TaskModalActionPannel = ({
           <p className="font-bold text-gray-600">Details</p>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm">
-              {isOpen ? <ArrowUp /> : <ArrowDown />}
+              {isOpen ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
               <span className="sr-only">Toggle</span>
             </Button>
           </CollapsibleTrigger>
         </div>
         <CollapsibleContent>
           <div className="grid w-full gap-y-0 border border-gray-300">
-            <TaskSelect selectLabel="Assignee" contentLabel="+ set status" />
+            <TaskSelect selectLabel="Assignee" />
+            <TaskSelect selectLabel="Priority" />
+            <TaskSelectDate />
           </div>
         </CollapsibleContent>
       </Collapsible>

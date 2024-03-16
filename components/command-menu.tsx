@@ -71,7 +71,7 @@ export function CommandMenu({...props}: DialogProps) {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Tasks">
-            {taskList.map(task => (
+            {taskList?.map(task => (
               <CommandItem
                 key={task.ticketCode}
                 value={task.ticketCode}

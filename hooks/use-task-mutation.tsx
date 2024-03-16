@@ -10,17 +10,7 @@ export const useTaskMutation = () => {
     onSuccess: newTask => {
       queryClient.setQueryData<Task[] | undefined>([QUERY_KEY.tasklist], prev =>
         prev?.map(task =>
-          task.ticketCode === newTask.ticketCode
-            ? {
-                ...task,
-                status: newTask.status,
-                ownerId: newTask.ownerId,
-                startDate: newTask.startDate,
-                priority: newTask.priority,
-                description: newTask.description,
-                title: newTask.title,
-              }
-            : task
+          task.ticketCode === newTask.ticketCode ? {...newTask} : task
         )
       );
     },

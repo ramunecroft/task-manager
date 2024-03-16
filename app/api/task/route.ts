@@ -1,6 +1,6 @@
 import {auth} from "@/auth";
 import {db} from "@/server/db";
-import {tasks, updateTaskStatusSchema} from "@/server/db/schema";
+import {type UpdateTaskInput, insertTaskSchema, tasks} from "@/server/db/schema";
 import {eq} from "drizzle-orm";
 import {NextResponse} from "next/server";
 
@@ -15,19 +15,19 @@ export const GET = auth(async () => {
 
 export async function PUT(request: Request) {
   try {
-    const payload: unknown = await request.json();
-    const parsed = updateTaskStatusSchema.safeParse(payload);
+    const payload = (await request.json()) as UpdateTaskInput;
+    const parsed = insertTaskSchema.safeParse(payload);
 
     if (!parsed.success) {
       return NextResponse.json({message: "Invalid request data"}, {status: 400});
     }
 
-    const {status, ticketCode, title, description} = parsed.data;
+    const validatedFields = parsed.data;
 
     const [result] = await db
       .update(tasks)
-      .set({status, title, description})
-      .where(eq(tasks.ticketCode, ticketCode))
+      .set(validatedFields)
+      .where(eq(tasks.ticketCode, validatedFields.ticketCode))
       .returning();
 
     return NextResponse.json(result);
