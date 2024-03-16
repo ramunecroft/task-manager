@@ -1,0 +1,511 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page render test renders a heading 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="w-full flex-1 flex-col"
+    >
+      <header
+        class="flex h-14 items-center border-b"
+      >
+        <h1
+          class="text-lg font-semibold"
+        >
+          Scrum Board
+        </h1>
+        <div
+          class="ml-auto flex gap-4"
+        >
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"
+          >
+            Add Task
+          </button>
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"
+          >
+            Filter
+          </button>
+        </div>
+      </header>
+      <div
+        class="flex flex-1 overflow-hidden"
+      >
+        <div
+          class="w-64 border-r bg-gray-100/40 p-4 dark:bg-gray-800/40"
+        >
+          <h2
+            class="mb-2 text-sm font-semibold"
+          >
+            Sprints
+          </h2>
+          <nav
+            class="space-y-2"
+          >
+            <a
+              class="flex items-center gap-2 text-sm font-medium"
+              href="#"
+            >
+              <svg
+                class="lucide lucide-folder h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+                />
+              </svg>
+              Sprint 1
+            </a>
+            <a
+              class="flex items-center gap-2 text-sm font-medium"
+              href="#"
+            >
+              <svg
+                class="lucide lucide-folder h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+                />
+              </svg>
+              Sprint 2
+            </a>
+            <a
+              class="flex items-center gap-2 text-sm font-medium"
+              href="#"
+            >
+              <svg
+                class="lucide lucide-folder h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+                />
+              </svg>
+              Sprint 3
+            </a>
+          </nav>
+        </div>
+        <div
+          class="grid h-screen flex-1 grid-flow-col grid-cols-4 gap-8"
+        >
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    TO DO
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    IN PROGRESS
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    IN REVIEW
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    DONE
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Page render test should render without crashing 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="w-full flex-1 flex-col"
+    >
+      <header
+        class="flex h-14 items-center border-b"
+      >
+        <h1
+          class="text-lg font-semibold"
+        >
+          Scrum Board
+        </h1>
+        <div
+          class="ml-auto flex gap-4"
+        >
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"
+          >
+            Add Task
+          </button>
+          <button
+            class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"
+          >
+            Filter
+          </button>
+        </div>
+      </header>
+      <div
+        class="flex flex-1 overflow-hidden"
+      >
+        <div
+          class="w-64 border-r bg-gray-100/40 p-4 dark:bg-gray-800/40"
+        >
+          <h2
+            class="mb-2 text-sm font-semibold"
+          >
+            Sprints
+          </h2>
+          <nav
+            class="space-y-2"
+          >
+            <a
+              class="flex items-center gap-2 text-sm font-medium"
+              href="#"
+            >
+              <svg
+                class="lucide lucide-folder h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+                />
+              </svg>
+              Sprint 1
+            </a>
+            <a
+              class="flex items-center gap-2 text-sm font-medium"
+              href="#"
+            >
+              <svg
+                class="lucide lucide-folder h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+                />
+              </svg>
+              Sprint 2
+            </a>
+            <a
+              class="flex items-center gap-2 text-sm font-medium"
+              href="#"
+            >
+              <svg
+                class="lucide lucide-folder h-4 w-4"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"
+                />
+              </svg>
+              Sprint 3
+            </a>
+          </nav>
+        </div>
+        <div
+          class="grid h-screen flex-1 grid-flow-col grid-cols-4 gap-8"
+        >
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    TO DO
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    IN PROGRESS
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    IN REVIEW
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative overflow-hidden"
+            dir="ltr"
+            style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          >
+            <style>
+              [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
+            </style>
+            <div
+              class="h-full w-full rounded-[inherit]"
+              data-radix-scroll-area-viewport=""
+              style="overflow-x: hidden; overflow-y: scroll;"
+            >
+              <div
+                style="min-width: 100%; display: table;"
+              >
+                <div
+                  class="text-md sticky top-0 bg-gray-100 px-4 py-2 font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white"
+                >
+                  <h3>
+                    DONE
+                  </h3>
+                </div>
+                <div
+                  class="min-h-screen bg-gray-100 dark:bg-gray-800/40"
+                >
+                  <div
+                    class="flex flex-col items-start justify-center space-y-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

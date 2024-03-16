@@ -1,15 +1,12 @@
-export const Priority = {
-  Lower: "lower",
-  Low: "low",
-  Medium: "medium",
-  High: "high",
-  Highest: "highest",
-} as const;
+import {priorityEnum} from "@/server/db/schema";
+import {z} from "zod";
 
-// export const API_URL =
-//   process.env.NEXT_PUBLIC_API_URL ||
-//   new URL("https://" + process.env.NEXT_PUBLIC_VERCEL_URL).toString();
+export const priority = z.enum(priorityEnum.enumValues).Values;
 
+/**
+ * QUERY KEY
+ */
 export const QUERY_KEY = {
   tasklist: "taskList",
+  userList: "userList",
 };

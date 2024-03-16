@@ -3,7 +3,7 @@
 import {getTasks} from "@/client/api/task";
 import {Icons} from "@/components/icons";
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
-import {Priority, QUERY_KEY} from "@/constants";
+import {QUERY_KEY, priority} from "@/constants";
 import {type Task} from "@/server/db/schema";
 import {showTaskModalAtom, taskModalAtom} from "@/store/task";
 import {useQuery} from "@tanstack/react-query";
@@ -83,19 +83,19 @@ export const TaskCard = ({
 };
 
 export const PriorityIcon = ({level}: {level: Task["priority"]}) => {
-  if (level === Priority.Lower) {
+  if (level === priority.lower) {
     return <Icons.lower data-testid={123} />;
   }
-  if (level === Priority.Low) {
+  if (level === priority.low) {
     return <Icons.low />;
   }
-  if (level === Priority.Medium) {
+  if (level === priority.medium) {
     return <Icons.medium data-testid={125} />;
   }
-  if (level === Priority.High) {
+  if (level === priority.high) {
     return <Icons.high />;
   }
-  if (level === Priority.Highest) {
+  if (level === priority.highest) {
     return <Icons.highest />;
   }
 };

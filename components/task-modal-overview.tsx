@@ -1,38 +1,35 @@
-import {updateTaskStatus} from "@/client/api/task";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
-import {mutateAtom, taskListAtom, taskModalAtom} from "@/store/task";
-import {useAtom, useAtomValue, useSetAtom} from "jotai";
+import {useTaskList} from "@/hooks/use-task-list";
+import {useTaskMutation} from "@/hooks/use-task-mutation";
+import {taskModalAtom} from "@/store/task";
+import {useAtom} from "jotai";
 import React, {useEffect, useRef} from "react";
 
 export const TaskModalOverview = () => {
+  const {data: taskList} = useTaskList();
+  const {mutate: taskMutate, isSuccess: isTaskMutateSuccess} = useTaskMutation();
   const [taskModal, setTaskModal] = useAtom(taskModalAtom);
   const [isTextareaEdting, setIsTextareEditing] = React.useState(false);
   const [isTitleEdting, setIsTitleEdting] = React.useState(false);
-  const taskList = useAtomValue(taskListAtom);
   const textareWrapperRef = useRef<HTMLDivElement | null>(null);
   const inputWrapperAreaRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const mutate = useSetAtom(mutateAtom);
 
   useEffect(() => {
     if (!taskModal) return;
 
     const handleClickOutside = (event: MouseEvent | KeyboardEvent) => {
+      if (!taskList) return;
       if (event instanceof KeyboardEvent && event.key === "Enter") {
-        setIsTextareEditing(false);
-        setIsTitleEdting(false);
-        updateTaskStatus({...taskModal})
-          .then(() => {})
-          .catch(() => {});
-        const updated = taskList.map(task => {
-          if (task.ticketCode === taskModal.ticketCode) {
-            task.description = taskModal.description;
-          }
-          return task;
+        taskMutate({
+          ...taskModal,
         });
-        mutate(updated);
+        if (isTaskMutateSuccess) {
+          setIsTextareEditing(false);
+          setIsTitleEdting(false);
+        }
         return;
       }
       if (
@@ -41,18 +38,13 @@ export const TaskModalOverview = () => {
         inputWrapperAreaRef.current &&
         !inputWrapperAreaRef.current.contains(event.target as Node)
       ) {
-        setIsTextareEditing(false);
-        setIsTitleEdting(false);
-        updateTaskStatus({...taskModal})
-          .then(() => {})
-          .catch(() => {});
-        const updated = taskList.map(task => {
-          if (task.ticketCode === taskModal.ticketCode) {
-            task.description = taskModal.description;
-          }
-          return task;
+        if (isTaskMutateSuccess) {
+          setIsTextareEditing(false);
+          setIsTitleEdting(false);
+        }
+        taskMutate({
+          ...taskModal,
         });
-        mutate(updated);
         return;
       }
     };
