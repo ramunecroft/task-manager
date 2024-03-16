@@ -13,11 +13,13 @@ import {
 import {Input} from "@/components/ui/input";
 import {signUp} from "@/server/actions/sign-up";
 import {type signUpSchema} from "@/server/db/schema";
+import {useRouter} from "next/navigation";
 import React from "react";
 import {useForm} from "react-hook-form";
 import {type z} from "zod";
 
 export const SignUpForm = () => {
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [isPending, startTransition] = React.useTransition();
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -31,6 +33,7 @@ export const SignUpForm = () => {
   const onSubmit = (values: z.infer<typeof signUpSchema>) => {
     startTransition(async () => {
       const result = await signUp(values);
+      router.push("/");
       if (!result.isSuccess) {
         setErrorMessage(result.error.message);
       }
