@@ -121,6 +121,7 @@ export const tasks = pgTable(
     voteCount: integer("voteCount").default(0),
     ownerId: uuid("owner_id").references(() => users.id, {onDelete: "cascade"}),
     viewCount: integer("viewCount").default(0),
+    startDate: timestamp("start_date", {mode: "string"}),
   },
   table => ({
     authorIdIndex: index("authorId_idx").on(table.ownerId),
