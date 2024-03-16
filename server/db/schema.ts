@@ -24,6 +24,7 @@ export const priorityEnum = pgEnum("priority", [
   "high",
   "highest",
 ]);
+
 export const statusEnum = pgEnum("status", [
   "TO_DO",
   "IN_REVIEW",
@@ -34,7 +35,7 @@ export const statusEnum = pgEnum("status", [
 export const accounts = pgTable(
   "account",
   {
-    userId: text("userId")
+    userId: uuid("user_id")
       .notNull()
       .references(() => users.id, {onDelete: "cascade"}),
     type: text("type").$type<AdapterAccount["type"]>().notNull(),
@@ -55,7 +56,7 @@ export const accounts = pgTable(
 
 export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").notNull().primaryKey(),
-  userId: text("userId")
+  userId: uuid("userId")
     .notNull()
     .references(() => users.id, {onDelete: "cascade"}),
   expires: timestamp("expires", {mode: "date"}).notNull(),
@@ -76,7 +77,7 @@ export const verificationTokens = pgTable(
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey().notNull(),
   name: text("name"),
-  email: text("email").notNull(),
+  email: text("email").unique().notNull(),
   image: text("image"),
   password: text("password"),
   emailVerified: timestamp("emailVerified", {mode: "date"}),
@@ -111,14 +112,14 @@ export const usersRelations = relations(users, ({many}) => ({
 export const tasks = pgTable(
   "tasks",
   {
-    id: serial("id").primaryKey(),
+    id: uuid("id").defaultRandom().primaryKey().notNull(),
     title: text("title").notNull().notNull(),
     priority: priorityEnum("priority"),
     description: text("description").notNull(),
     status: statusEnum("status").notNull(),
     ticketCode: text("ticketCode").notNull(),
     voteCount: integer("voteCount").default(0),
-    ownerId: integer("owner_id").references(() => users.id, {onDelete: "cascade"}),
+    ownerId: uuid("owner_id").references(() => users.id, {onDelete: "cascade"}),
     viewCount: integer("viewCount").default(0),
   },
   table => ({
@@ -134,9 +135,9 @@ export const tasksRelations = relations(tasks, ({one}) => ({
 }));
 
 export const taskUpdateHistory = pgTable("task_updates", {
-  id: serial("id").primaryKey(),
-  taskId: integer("task_id").references(() => tasks.id, {onDelete: "cascade"}),
-  updatedByUserId: integer("updated_by_user_id").references(() => users.id),
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
+  taskId: uuid("task_id").references(() => tasks.id, {onDelete: "cascade"}),
+  updatedByUserId: uuid("updated_by_user_id").references(() => users.id),
   updatedAt: timestamp("updated_at").defaultNow(),
   previousValues: json("previous_values"), // Optional: to store previous values of the updated fields
   newValues: json("new_values"), // Optional: to store new values of the updated fields
@@ -160,13 +161,6 @@ export const selectUserSchema = createSelectSchema(users);
 
 export const insertTaskSchema = createInsertSchema(tasks);
 
-export const updateTaskStatusSchema = insertTaskSchema.pick({
-  ticketCode: true,
-  status: true,
-  description: true,
-  title: true,
-});
-
 export const selectTaskSchema = createSelectSchema(tasks);
 
 export type User = InferSelectModel<typeof users>;
@@ -177,4 +171,4 @@ export type Task = InferSelectModel<typeof tasks>;
 
 export type TaskInput = InferInsertModel<typeof tasks>;
 
-export type DragUpdateTaskInput = z.infer<typeof updateTaskStatusSchema>;
+export type UpdateTaskInput = z.infer<typeof insertTaskSchema>;

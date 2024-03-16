@@ -15,6 +15,7 @@
     "drizzle:generate": "drizzle-kit generate:pg",
     "drizzle:push": "drizzle-kit push:pg",
     "drizzle:introspect": "drizzle-kit introspect:pg --config=src/server/drizzle.config.ts",
+    "db:seed": "node -r esbuild-register server/db/seed.ts",
     "deps:update": "npx npm-check-updates --interactive --format group"
   },
   "lint-staged": {
@@ -43,6 +44,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
