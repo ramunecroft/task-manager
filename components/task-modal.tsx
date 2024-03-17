@@ -4,6 +4,7 @@ import {TaskModalActionPannel} from "@/components/task-modal-action-pannel";
 import {TaskModalHeader} from "@/components/task-modal-header";
 import {TaskModalOverview} from "@/components/task-modal-overview";
 import {Dialog, DialogContent} from "@/components/ui/dialog";
+import {useUserList} from "@/hooks/use-user-list";
 import {showTaskModalAtom} from "@/store/task";
 import {useAtom} from "jotai";
 

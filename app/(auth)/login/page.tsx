@@ -3,7 +3,12 @@ import {SocialButtons} from "@/app/(auth)/components/social-buttons";
 import {Icons} from "@/components/icons";
 import {buttonVariants} from "@/components/ui/button";
 import {cn} from "@/lib/utils";
+import {type Metadata} from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "login",
+};
 
 export default function SignInPage() {
   return (

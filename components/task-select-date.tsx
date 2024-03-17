@@ -8,50 +8,58 @@ import {cn} from "@/lib/utils";
 import {type Task} from "@/server/db/schema";
 import {taskModalStateAtom} from "@/store/task";
 import {format} from "date-fns";
-import {useAtom, useAtomValue} from "jotai";
+import {useAtom} from "jotai";
 import {CalendarIcon} from "lucide-react";
 
-export const TaskSelectDate = () => {
+type TaskSelectDateProps = {
+  date: "startDate" | "dueDate";
+};
+
+export const TaskSelectDate = ({date}: TaskSelectDateProps) => {
   const [taskModalState, setTaskModalState] = useAtom(taskModalStateAtom);
   const {mutate: taskMutate} = useTaskMutation();
 
   if (!taskModalState) return null;
 
-  const onSelect = (day: Date) => {
-    const payload = {
-      ...taskModalState,
-      startDate: format(day, "yyyy-MM-dd"),
-    } satisfies Task;
+  const updateTaskDate = (selectedDate: Date) => {
+    const formattedDate = format(selectedDate, "yyyy-MM-dd");
+    const updatedTask = {...taskModalState, [date]: formattedDate} as Task;
 
-    taskMutate(payload);
-    setTaskModalState(payload);
+    taskMutate(updatedTask);
+    setTaskModalState(updatedTask);
   };
+
+  const selectedDate =
+    date === "startDate"
+      ? new Date(taskModalState?.startDate || "")
+      : new Date(taskModalState?.dueDate || "");
+
+  const dateLabel = date === "startDate" ? "Start date" : "Due date";
+
+  const formattedSelectedDate = taskModalState[date]
+    ? format(new Date(taskModalState[date] || Date.now()), "PPP")
+    : "Pick a date";
+  const isDateSelected = !!taskModalState[date];
+
   return (
     <div className="grid grid-flow-col grid-cols-8 items-center px-3 py-2 focus:shadow">
-      <p className="col-span-3 text-sm text-muted-foreground">Start Date</p>
+      <p className="col-span-3 text-sm text-muted-foreground">{dateLabel}</p>
       <Popover>
         <PopoverTrigger asChild>
           <Button
-            variant={"outline"}
+            variant="outline"
             className={cn(
               "w-[200px] px-4 py-2 text-left font-normal",
-              !taskModalState?.startDate && "text-muted-foreground"
+              !isDateSelected && "text-muted-foreground"
             )}>
-            {taskModalState?.startDate ? (
-              <p>{format(taskModalState.startDate, "PPP")}</p>
-            ) : (
-              <p className="text-black">Pick a date</p>
-            )}
-
+            <p className={isDateSelected ? "text-black" : ""}>
+              {formattedSelectedDate}
+            </p>
             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent>
-          <Calendar
-            mode="single"
-            selected={new Date(taskModalState?.startDate || "")}
-            onDayClick={onSelect}
-          />
+          <Calendar mode="single" selected={selectedDate} onDayClick={updateTaskDate} />
         </PopoverContent>
       </Popover>
     </div>
