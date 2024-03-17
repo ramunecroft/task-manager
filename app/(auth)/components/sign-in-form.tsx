@@ -11,8 +11,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
+import {signInSchema} from "@/lib/validations/auth";
 import {SignIn} from "@/server/actions/sign-in";
-import {signInSchema} from "@/server/db/schema";
 import {progressTriggeredAtom} from "@/store";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useSetAtom} from "jotai";
@@ -55,7 +55,7 @@ export const SignInForm = () => {
             <FormItem>
               <FormLabel>email</FormLabel>
               <FormControl>
-                <Input placeholder="email" {...field} />
+                <Input placeholder="name@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -75,8 +75,18 @@ export const SignInForm = () => {
           )}
         />
         <Button type="submit" disabled={isPending}>
-          Submit
+          Sign In with Email
         </Button>
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t"></span>
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-background px-2 text-muted-foreground">
+              Or continue with
+            </span>
+          </div>
+        </div>
         <FormError message={errorMessage} />
       </form>
     </Form>

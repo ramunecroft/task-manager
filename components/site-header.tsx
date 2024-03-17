@@ -4,6 +4,7 @@ import {CommandMenu} from "@/components/command-menu";
 import {Icons} from "@/components/icons";
 import {MainNavigation} from "@/components/main-navigation";
 import {Progress} from "@/components/ui/progress";
+import {useConditionFragment} from "@/hooks/use-condition-fragment";
 import {LogOutIcon} from "lucide-react";
 import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
@@ -11,6 +12,8 @@ import Link from "next/link";
 export function SiteHeader() {
   const session = useSession();
   const user = session.data?.user;
+
+  if (useConditionFragment() === null) return null;
 
   const handleSignOut = async () => {
     await signOut();
@@ -21,11 +24,13 @@ export function SiteHeader() {
       <Progress />
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <MainNavigation />
-        <div className="flex flex-1 justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none">
-            <CommandMenu />
-          </div>
-          <nav className="flex items-center justify-center">
+        <div className="flex flex-1 items-center justify-between gap-x-2 md:justify-end">
+          {user && (
+            <div className="w-full flex-1 md:w-auto md:flex-none">
+              <CommandMenu />
+            </div>
+          )}
+          <nav className="flex items-center justify-center gap-x-1">
             <Link
               className="flex items-center justify-center"
               target="_blank"
@@ -39,7 +44,7 @@ export function SiteHeader() {
               <Link
                 className="flex items-center justify-center"
                 rel="noreferrer"
-                href={"sign-in"}>
+                href={"login"}>
                 <Icons.user />
               </Link>
             )}

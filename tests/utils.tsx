@@ -1,3 +1,4 @@
+import {task} from "@/tests/fixtures/task";
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 export const createWrapper = () => {
@@ -9,17 +10,7 @@ export const createWrapper = () => {
     },
   });
   // Mock the task list
-  queryClient.setQueryData(
-    ["taskList"],
-    [
-      {
-        description: "Test Task",
-        ticketCode: "TST-01",
-        voteCount: 3,
-        status: "TODO",
-      },
-    ]
-  );
+  queryClient.setQueryData(["taskList"], [task]);
   const wrapper = ({children}: {children: React.ReactNode}) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );

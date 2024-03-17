@@ -1,11 +1,12 @@
 "use server";
 
 import {type ActionResult} from "@/types/index";
-import {signUpSchema, users} from "@/server/db/schema";
 import {type z} from "zod";
 import bcrypt from "bcryptjs";
 import {getUserByEmail} from "@/server/users";
 import {db} from "@/server/db";
+import {signUpSchema} from "@/lib/validations/auth";
+import {users} from "@/server/db/schema";
 
 export const signUp = async (
   values: z.infer<typeof signUpSchema>

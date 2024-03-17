@@ -6,13 +6,13 @@ import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {useTaskMutation} from "@/hooks/use-task-mutation";
 import {cn} from "@/lib/utils";
 import {type Task} from "@/server/db/schema";
-import {taskModalAtom} from "@/store/task";
+import {taskModalStateAtom} from "@/store/task";
 import {format} from "date-fns";
 import {useAtom, useAtomValue} from "jotai";
 import {CalendarIcon} from "lucide-react";
 
 export const TaskSelectDate = () => {
-  const [taskModalState, setTaskModalState] = useAtom(taskModalAtom);
+  const [taskModalState, setTaskModalState] = useAtom(taskModalStateAtom);
   const {mutate: taskMutate} = useTaskMutation();
 
   if (!taskModalState) return null;

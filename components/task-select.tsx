@@ -14,7 +14,7 @@ import {priority} from "@/constants";
 import {useTaskMutation} from "@/hooks/use-task-mutation";
 import {useUserList} from "@/hooks/use-user-list";
 import {type Task} from "@/server/db/schema";
-import {taskModalAtom} from "@/store/task";
+import {taskModalStateAtom} from "@/store/task";
 import {useAtom} from "jotai";
 import React from "react";
 
@@ -23,7 +23,7 @@ type TaskSelectProps = {
 };
 
 export const TaskSelect = ({selectLabel}: TaskSelectProps) => {
-  const [taskModalState, setTaskModalState] = useAtom(taskModalAtom);
+  const [taskModalState, setTaskModalState] = useAtom(taskModalStateAtom);
   const [open, setOpen] = React.useState(false);
 
   const {data: userList} = useUserList();

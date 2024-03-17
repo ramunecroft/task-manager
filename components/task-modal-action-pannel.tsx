@@ -15,14 +15,14 @@ import {
 } from "@/components/ui/select";
 import {useTaskMutation} from "@/hooks/use-task-mutation";
 import {type Task} from "@/server/db/schema";
-import {taskModalAtom} from "@/store/task";
+import {taskModalStateAtom} from "@/store/task";
 import {useAtomValue} from "jotai";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import React from "react";
 
 export const TaskModalActionPannel = () => {
   const [isOpen, setIsOpen] = React.useState(true);
-  const taskModal = useAtomValue(taskModalAtom);
+  const taskModal = useAtomValue(taskModalStateAtom);
   const {mutate: taskMutate} = useTaskMutation();
 
   if (!taskModal) return;

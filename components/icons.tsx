@@ -1,4 +1,13 @@
-import {ChevronDown, ChevronUp, Eye, HomeIcon, User, UserIcon} from "lucide-react";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Eye,
+  HomeIcon,
+  User,
+  UserIcon,
+} from "lucide-react";
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -102,5 +111,7 @@ export const Icons = {
   eye: (props: IconProps) => <Eye />,
   chevronUp: (props: IconProps) => <ChevronUp />,
   chevronDown: (props: IconProps) => <ChevronDown />,
+  chevronRight: (props: IconProps) => <ChevronRight />,
+  chevronLeft: (props: IconProps) => <ChevronLeft {...props} />,
   login: (props: IconProps) => <User />,
 };

@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
-import {signInSchema} from "@/server/db/schema";
 import {getUserByEmail} from "@/server/users";
 import {type NextAuthConfig} from "next-auth";
 import GitHub from "@auth/core/providers/github";
 import Credentials from "@auth/core/providers/credentials";
+import {signInSchema} from "@/lib/validations/auth";
 
 export default {
   providers: [
@@ -16,7 +16,6 @@ export default {
           const user = await getUserByEmail(email);
           if (!user || !user.password) return null;
           const passwordsMatch = await bcrypt.compare(password, user.password);
-          console.log("passwordsMatch", passwordsMatch);
           if (passwordsMatch) return user;
         }
         return null;

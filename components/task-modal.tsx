@@ -4,15 +4,11 @@ import {TaskModalActionPannel} from "@/components/task-modal-action-pannel";
 import {TaskModalHeader} from "@/components/task-modal-header";
 import {TaskModalOverview} from "@/components/task-modal-overview";
 import {Dialog, DialogContent} from "@/components/ui/dialog";
-import {useTaskList} from "@/hooks/use-task-list";
 import {showTaskModalAtom} from "@/store/task";
 import {useAtom} from "jotai";
 
 export const TaskModal = () => {
   const [showTaskModal, setShowTaskModal] = useAtom(showTaskModalAtom);
-  const {data: taskList} = useTaskList();
-
-  if (!taskList) return;
 
   return (
     <Dialog open={showTaskModal} onOpenChange={setShowTaskModal}>
