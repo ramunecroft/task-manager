@@ -5,7 +5,7 @@ import {Icons} from "@/components/icons";
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
 import {QUERY_KEY, priority} from "@/constants";
 import {type Task} from "@/server/db/schema";
-import {showTaskModalAtom, taskModalAtom} from "@/store/task";
+import {showTaskModalAtom, taskModalStateAtom} from "@/store/task";
 import {useQuery} from "@tanstack/react-query";
 import {useSetAtom} from "jotai";
 import React from "react";
@@ -38,7 +38,7 @@ export const TaskCard = ({
   });
 
   const setShowTaskModal = useSetAtom(showTaskModalAtom);
-  const setTaskModal = useSetAtom(taskModalAtom);
+  const setTaskModal = useSetAtom(taskModalStateAtom);
 
   if (!taskList) return null;
 

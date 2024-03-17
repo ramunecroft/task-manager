@@ -24,7 +24,7 @@ export function Provider({children, ...props}: ThemeProviderProps) {
     <NextThemesProvider {...props}>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
-          <DevTools />
+          <DevTools position="top-left" />
           <ReactQueryDevtools initialIsOpen={false} />
           <TooltipProvider>{children}</TooltipProvider>
         </ToastProvider>

@@ -7,13 +7,12 @@ import {
   pgEnum,
   pgTable,
   primaryKey,
-  serial,
   text,
   timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
 import {createInsertSchema, createSelectSchema} from "drizzle-zod";
-import {z} from "zod";
+import {type z} from "zod";
 
 export const roleEnum = pgEnum("role", ["user", "admin"]);
 
@@ -82,27 +81,6 @@ export const users = pgTable("users", {
   password: text("password"),
   emailVerified: timestamp("emailVerified", {mode: "date"}),
   role: roleEnum("user").default("user"),
-});
-
-export const signUpSchema = z.object({
-  email: z.string().email({
-    message: "メールアドレスは必須です。",
-  }),
-  password: z.string().min(6, {
-    message: "パスワードは6文字以上です。",
-  }),
-  name: z.string().min(1, {
-    message: "ニックネームは必須です。",
-  }),
-});
-
-export const signInSchema = z.object({
-  email: z.string().email({
-    message: "メールアドレスは必須です。",
-  }),
-  password: z.string().min(6, {
-    message: "パスワードは6文字以上です。",
-  }),
 });
 
 export const usersRelations = relations(users, ({many}) => ({

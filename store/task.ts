@@ -30,7 +30,7 @@ export const mutateAtom: WritableAtom<null, [taskList: Task[]], void> = atom(
 export const selectedTaskTicketCodeAtom = atom<string | null>(null);
 selectedTaskTicketCodeAtom.debugPrivate = true;
 
-export const taskModalAtom = atom<Task | null>(null);
+export const taskModalStateAtom = atom<Task | null>(null);
 
 export const showTaskModalAtom = atom(false);
 showTaskModalAtom.debugLabel = "showTaskModal";

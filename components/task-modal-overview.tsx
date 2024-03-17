@@ -2,14 +2,14 @@ import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
 import {useTaskList} from "@/hooks/use-task-list";
 import {useTaskMutation} from "@/hooks/use-task-mutation";
-import {taskModalAtom} from "@/store/task";
+import {taskModalStateAtom} from "@/store/task";
 import {useAtom} from "jotai";
 import React, {useEffect, useRef} from "react";
 
 export const TaskModalOverview = () => {
   const {data: taskList} = useTaskList();
   const {mutate: taskMutate, isSuccess: isTaskMutateSuccess} = useTaskMutation();
-  const [taskModal, setTaskModal] = useAtom(taskModalAtom);
+  const [taskModal, setTaskModal] = useAtom(taskModalStateAtom);
   const [isTextareaEdting, setIsTextareEditing] = React.useState(false);
   const [isTitleEdting, setIsTitleEdting] = React.useState(false);
   const textareWrapperRef = useRef<HTMLDivElement | null>(null);

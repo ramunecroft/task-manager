@@ -11,13 +11,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
+import {type signUpSchema} from "@/lib/validations/auth";
 import {signUp} from "@/server/actions/sign-up";
-import {type signUpSchema} from "@/server/db/schema";
+import {useRouter} from "next/navigation";
 import React from "react";
 import {useForm} from "react-hook-form";
 import {type z} from "zod";
 
 export const SignUpForm = () => {
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [isPending, startTransition] = React.useTransition();
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -31,6 +33,7 @@ export const SignUpForm = () => {
   const onSubmit = (values: z.infer<typeof signUpSchema>) => {
     startTransition(async () => {
       const result = await signUp(values);
+      router.push("/");
       if (!result.isSuccess) {
         setErrorMessage(result.error.message);
       }
@@ -40,7 +43,7 @@ export const SignUpForm = () => {
   return (
     <Form {...form}>
       <form
-        className="flex max-w-[500px] flex-1 flex-col gap-4"
+        className="flex w-full flex-1 flex-col gap-4"
         onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
@@ -75,7 +78,7 @@ export const SignUpForm = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="password" {...field} />
+                <Input placeholder="password" type="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

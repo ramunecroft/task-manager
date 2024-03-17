@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Modal Test render task modal 1`] = `<div />`;
+
 exports[`Modal Test renders correctly with given props 1`] = `<div />`;

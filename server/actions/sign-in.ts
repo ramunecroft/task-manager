@@ -2,10 +2,10 @@
 
 import {type ActionResult} from "@/types/index";
 import {signIn as NextAuthSignIn} from "@/auth";
-import {signInSchema} from "@/server/db/schema";
 import {type z} from "zod";
 import {AuthError} from "next-auth";
 import {DEFAULT_LOGIN_REDIRECT} from "@/routes";
+import {signInSchema} from "@/lib/validations/auth";
 
 export const SignIn = async (
   values: z.infer<typeof signInSchema>

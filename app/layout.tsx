@@ -9,6 +9,7 @@ import {auth} from "@/auth";
 import "@/styles/globals.css";
 import type {Metadata, Viewport} from "next";
 import {SessionProvider} from "next-auth/react";
+import {TailwindIndicator} from "@/components/tailwind-indicator";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -43,18 +44,17 @@ export default async function RootLayout({children}: Readonly<RootLayoutProps>) 
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-            <div vaul-drawer-wrapper="">
+            <Toaster />
+            <TailwindIndicator />
+            <ModalProvider>
               <div className="relative flex min-h-screen flex-col bg-background">
-                <ModalProvider>
-                  <SiteHeader />
-                  <main className="flex flex-1 items-center justify-center overflow-auto">
-                    <Toaster />
-                    {children}
-                  </main>
-                  <SiteFooter />
-                </ModalProvider>
+                <SiteHeader />
+                <main className="flex flex-1 items-center justify-center overflow-auto">
+                  {children}
+                </main>
+                <SiteFooter />
               </div>
-            </div>
+            </ModalProvider>
           </Provider>
         </body>
       </html>
