@@ -8,6 +8,7 @@ import {type Task} from "@/server/db/schema";
 import {showTaskModalAtom, taskModalStateAtom} from "@/store/task";
 import {useQuery} from "@tanstack/react-query";
 import {useSetAtom} from "jotai";
+import {useSession} from "next-auth/react";
 import React from "react";
 
 /**
@@ -37,6 +38,8 @@ export const TaskCard = ({
     queryFn: () => getTasks(),
   });
 
+  const session = useSession();
+  const userImage = session.data?.user.image;
   const setShowTaskModal = useSetAtom(showTaskModalAtom);
   const setTaskModal = useSetAtom(taskModalStateAtom);
 
@@ -75,7 +78,7 @@ export const TaskCard = ({
             <span className="text-sm font-semibold  text-gray-700">{voteCount}</span>
           </div>
           <PriorityIcon level={priority} />
-          <Icons.user />
+          {userImage ? userImage : <Icons.user />}
         </div>
       </CardContent>
     </Card>

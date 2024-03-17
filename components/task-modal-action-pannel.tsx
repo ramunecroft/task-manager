@@ -16,20 +16,20 @@ import {
 import {useTaskMutation} from "@/hooks/use-task-mutation";
 import {type Task} from "@/server/db/schema";
 import {taskModalStateAtom} from "@/store/task";
-import {useAtomValue} from "jotai";
+import {useAtom} from "jotai";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import React from "react";
 
 export const TaskModalActionPannel = () => {
   const [isOpen, setIsOpen] = React.useState(true);
-  const taskModal = useAtomValue(taskModalStateAtom);
-  const {mutate: taskMutate} = useTaskMutation();
+  const [taskModalState, setTaskModalState] = useAtom(taskModalStateAtom);
+  const {mutate: taskMutate, isSuccess} = useTaskMutation();
 
-  if (!taskModal) return;
+  if (!taskModalState) return;
 
   const onStatusChange = (status: Task["status"]) => {
     taskMutate({
-      ...taskModal,
+      ...taskModalState,
       status,
     });
   };
@@ -40,7 +40,7 @@ export const TaskModalActionPannel = () => {
       className="col-span-2 flex flex-col gap-y-4">
       <Select onValueChange={(e: Task["status"]) => onStatusChange(e)}>
         <SelectTrigger className="bg-gray-100 font-extrabold">
-          <SelectValue placeholder={taskModal.status.split("_").join(" ")} />
+          <SelectValue placeholder={taskModalState.status.split("_").join(" ")} />
         </SelectTrigger>
         <SelectContent className="font-extrabold">
           <SelectItem value="TO_DO">TO DO</SelectItem>
@@ -50,7 +50,7 @@ export const TaskModalActionPannel = () => {
         </SelectContent>
       </Select>
       <Collapsible open={isOpen} onOpenChange={setIsOpen} className="space-y-2">
-        <div className="flex items-center justify-between border border-gray-300 px-3 py-2">
+        <div className="flex items-center justify-between border border-gray-300 px-3 py-1">
           <p className="font-bold text-gray-600">Details</p>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm">
@@ -67,7 +67,8 @@ export const TaskModalActionPannel = () => {
           <div className="grid w-full gap-y-0 border border-gray-300">
             <TaskSelect selectLabel="Assignee" />
             <TaskSelect selectLabel="Priority" />
-            <TaskSelectDate />
+            <TaskSelectDate date="startDate" />
+            <TaskSelectDate date="dueDate" />
           </div>
         </CollapsibleContent>
       </Collapsible>

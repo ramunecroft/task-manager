@@ -28,66 +28,55 @@ export const TaskSelect = ({selectLabel}: TaskSelectProps) => {
 
   const {data: userList} = useUserList();
 
-  const {mutate: taskMutate, isSuccess} = useTaskMutation();
+  const {mutate: taskMutate} = useTaskMutation();
 
-  if (!taskModalState || !userList) return null;
+  const label = React.useMemo(() => {
+    if (selectLabel === "Assignee") {
+      const selectedUser = userList?.find(user => user.id === taskModalState?.ownerId);
+      return selectedUser ? selectedUser.name : "Select Assignee";
+    }
+    return taskModalState?.priority ? taskModalState?.priority : "Select Priority";
+  }, [taskModalState, userList, selectLabel]);
+
+  const items = React.useMemo(() => {
+    const listItems =
+      selectLabel === "Assignee"
+        ? userList?.map(user => ({id: user.id, displayValue: user.name}))
+        : Object.entries(priority).map(([key, value]) => ({
+            id: key,
+            displayValue: value.charAt(0).toUpperCase() + value.slice(1),
+          }));
+
+    return listItems?.map(item => (
+      <CommandItem
+        key={item.id}
+        value={item.id}
+        onSelect={() => updateTask(selectLabel.toLowerCase() as keyof Task, item.id)}>
+        {item.displayValue}
+      </CommandItem>
+    ));
+  }, [userList, selectLabel]);
+
+  if (!taskModalState || !userList) return <></>;
 
   const updateTask = (key: keyof Task, value: string) => {
-    if (taskModalState?.[key] === value) {
+    if (taskModalState[key] === value) {
       setOpen(false);
       return;
     }
 
-    const payload: Task = {
+    const updatedTask: Task = {
       ...taskModalState,
       [key]: value,
     };
 
-    taskMutate(payload, {
+    taskMutate(updatedTask, {
       onSuccess: () => {
-        setTaskModalState(payload);
+        setTaskModalState(updatedTask);
         setOpen(false);
       },
     });
   };
-
-  const selectedUser = userList?.find(
-    user => user.id === taskModalState?.ownerId?.toString()
-  );
-
-  const selectedPriority = taskModalState?.priority;
-
-  const generateListItems = (
-    items: Array<{id: string; displayValue: string}>,
-    onSelect: (value: string) => void
-  ) => {
-    return items.map(item => (
-      <CommandItem key={item.id} value={item.id} onSelect={() => onSelect(item.id)}>
-        {item.displayValue}
-      </CommandItem>
-    ));
-  };
-
-  const assigneeList = generateListItems(
-    userList.map(user => ({id: user.id, displayValue: user.name || ""})),
-    value => updateTask("ownerId", value)
-  );
-  const statusList = generateListItems(
-    Object.values(priority).map(status => ({
-      id: status,
-      displayValue: status.charAt(0).toUpperCase() + status.slice(1),
-    })),
-    value => updateTask("priority", value)
-  );
-
-  const label =
-    selectLabel === "Assignee" && selectedUser ? (
-      <p className="font-normal text-black">{selectedUser.name}</p>
-    ) : selectLabel === "Priority" ? (
-      <p className="font-normal capitalize text-black">{selectedPriority}</p>
-    ) : (
-      <p className="text-muted-foreground">NONE</p>
-    );
 
   return (
     <div className="grid grid-flow-col grid-cols-8 items-center px-3 py-2 focus:shadow">
@@ -102,9 +91,12 @@ export const TaskSelect = ({selectLabel}: TaskSelectProps) => {
           <Command>
             <CommandInput placeholder="Change status..." />
             <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
               <CommandGroup>
-                {selectLabel === "Assignee" ? assigneeList : statusList}
+                {items && items.length > 0 ? (
+                  items
+                ) : (
+                  <CommandEmpty>No results found.</CommandEmpty>
+                )}
               </CommandGroup>
             </CommandList>
           </Command>
