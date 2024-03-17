@@ -11,11 +11,6 @@ import {useSetAtom} from "jotai";
 import {useSession} from "next-auth/react";
 import React from "react";
 
-/**
- * title: title of task
- *
- * priority: priority of task
- */
 type TaskCardProps = {
   description: string;
   ticketCode: string;
