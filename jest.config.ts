@@ -49,12 +49,16 @@ const config: Config = {
     "^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$": `<rootDir>/__mocks__/fileMock.js`,
 
     // Handle module aliases
-    "^@/components/(.*)$": "<rootDir>/src/components/$1",
-    "^@/pages/(.*)$": "<rootDir>/src/pages/$1",
-    "^@/lib(.*)$": "<rootDir>/src/lib$1",
+    "^@/components/(.*)$": "<rootDir>/components/$1",
+    "^@/app/(.*)$": "<rootDir>/app/$1",
+    "^@/lib(.*)$": "<rootDir>/lib$1",
     "^@/hooks(.*)$": "<rootDir>/hooks$1",
     "^@/mocks(.*)$": "<rootDir>/__mocks__$1",
     "^@/tests(.*)$": "<rootDir>/.jest$1",
+    "@/auth": "<rootDir>/tests/mocks/auth.ts",
+    "next-auth/providers/credentials":
+      "<rootDir>/tests/mocks/next-auth-providers-credentials.ts",
+    "next-auth": "<rootDir>/tests/mocks/next-auth.ts",
   },
 };
 
