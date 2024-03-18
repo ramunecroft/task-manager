@@ -6,8 +6,10 @@ describe("logout", () => {
   it("should log in successfully and redirect to the dashboard", () => {
     cy.visit("http://localhost:3000/login");
 
-    cy.get("input[name=email]").type("testuser@gmail.com");
-    cy.get("input[name=password]").type("12341234");
+    cy.fixture("loginInfo").then(data => {
+      cy.get("input[name=email]").type(data.email);
+      cy.get("input[name=password]").type(data.password);
+    });
 
     cy.get("button[type=submit]").click();
 
