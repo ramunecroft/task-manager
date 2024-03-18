@@ -51,7 +51,7 @@ export default async function RootLayout({children}: Readonly<RootLayoutProps>) 
             <TailwindIndicator />
             <ModalProvider>
               <div className="relative flex min-h-screen flex-col bg-background">
-                <SiteHeader />
+                <SiteHeader session={session} />
                 <main className="flex flex-1 items-center justify-center overflow-auto">
                   {children}
                 </main>
