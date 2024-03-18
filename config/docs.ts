@@ -22,32 +22,3 @@ export const docsConfig: DocsConfig = {
     },
   ],
 };
-
-// TODO DB
-export type Status = {
-  value: string;
-  label: string;
-};
-
-export const statuses: Status[] = [
-  {
-    value: "backlog",
-    label: "Backlog",
-  },
-  {
-    value: "todo",
-    label: "Todo",
-  },
-  {
-    value: "in progress",
-    label: "In Progress",
-  },
-  {
-    value: "done",
-    label: "Done",
-  },
-  {
-    value: "canceled",
-    label: "Canceled",
-  },
-];
