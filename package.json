@@ -70,7 +70,7 @@
     "lucide-react": "^0.354.0",
     "next": "14.2.0-canary.13",
     "next-auth": "5.0.0-beta.15",
-    "next-themes": "^0.2.1",
+    "next-themes": "^0.3.0",
     "pg": "^8.11.3",
     "postgres": "3.3",
     "react": "^18",
@@ -78,6 +78,7 @@
     "react-day-picker": "^8.10.0",
     "react-dom": "^18",
     "react-hook-form": "^7.51.0",
+    "sonner": "^1.4.32",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
