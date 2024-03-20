@@ -2,6 +2,7 @@ import {updateTaskStatus} from "@/client/api/task";
 import {QUERY_KEY} from "@/constants";
 import {type Task} from "@/server/db/schema";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {toast} from "sonner";
 
 export const useTaskMutation = () => {
   const queryClient = useQueryClient();
@@ -14,8 +15,26 @@ export const useTaskMutation = () => {
         )
       );
     },
+    onMutate: updatedTask => {
+      const previousTasks = queryClient.getQueryData<Task[]>([QUERY_KEY.tasklist]);
+
+      queryClient.setQueryData<Task[]>([QUERY_KEY.tasklist], old =>
+        old?.map(task =>
+          task.id === updatedTask.id ? {...task, ...updatedTask} : task
+        )
+      );
+
+      return {previousTasks};
+    },
     onError: (error, newTask, context) => {
       queryClient.setQueryData<Task[]>([QUERY_KEY.tasklist], context?.previousTasks);
+      toast("Failed to update Task", {
+        description: "An error occurred while updating the task",
+        action: {
+          label: "Undo",
+          onClick: () => {},
+        },
+      });
     },
   });
 };

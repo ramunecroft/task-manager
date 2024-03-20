@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 import {Calendar} from "@/components/ui/calendar";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {useTaskMutation} from "@/hooks/use-task-mutation";
-import {cn} from "@/lib/utils";
+import {cn, createStringTime} from "@/lib/utils";
 import {type Task} from "@/server/db/schema";
 import {taskModalStateAtom} from "@/store/task";
 import {format} from "date-fns";
@@ -22,8 +22,9 @@ export const TaskSelectDate = ({date}: TaskSelectDateProps) => {
   if (!taskModalState) return null;
 
   const updateTaskDate = (selectedDate: Date) => {
-    const formattedDate = format(selectedDate, "yyyy-MM-dd");
-    const updatedTask = {...taskModalState, [date]: formattedDate} as Task;
+    const time = createStringTime(selectedDate);
+
+    const updatedTask = {...taskModalState, [date]: time} as Task;
 
     taskMutate(updatedTask);
     setTaskModalState(updatedTask);

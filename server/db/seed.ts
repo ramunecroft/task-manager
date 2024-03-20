@@ -1,5 +1,6 @@
 import {db} from "@/server/db";
-import {tasks, users} from "@/server/db/schema";
+import {tasks} from "@/server/db/schema";
+import {max} from "drizzle-orm";
 
 async function main() {
   console.log("seeding database...");
@@ -15,6 +16,12 @@ async function main() {
   //   .returning();
 
   for (let index = 0; index < 10; index++) {
+    const [maxOrder] = await db
+      .select({
+        value: max(tasks.order),
+      })
+      .from(tasks);
+
     const task = await db.insert(tasks).values({
       title: "Task title",
       description: "Task description",
@@ -22,6 +29,7 @@ async function main() {
       ticketCode: "TICKET-" + index,
       priority: "low",
       ownerId: "7f52ec8b-3f25-4b11-bb18-e691dd2d68d5",
+      order: maxOrder.value ? maxOrder.value + 1 : 1,
     });
   }
 
