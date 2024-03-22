@@ -15,3 +15,5 @@ export function atomWithRefresh<T>(fn: (get: Getter) => T) {
 export const loadingAtom = atom(false);
 
 export const progressTriggeredAtom = atom(false);
+
+export const generateIssueModalAtom = atom<boolean>(false);

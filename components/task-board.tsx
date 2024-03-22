@@ -1,15 +1,23 @@
+"use client";
+
 import {TaskSection} from "@/components/task-section";
 import {Button} from "@/components/ui/button";
+import {generateIssueModalAtom} from "@/store";
+import {useSetAtom} from "jotai";
 import {FolderIcon} from "lucide-react";
 import Link from "next/link";
 
 export const TaskBoard = () => {
+  const setShowGenerateIssueModal = useSetAtom(generateIssueModalAtom);
   return (
     <div className="w-full flex-1 flex-col">
       <header className="flex h-14 items-center border-b">
         <h1 className="text-lg font-semibold">Scrum Board</h1>
         <div className="ml-auto flex gap-4">
-          <Button size="sm" variant="outline">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => setShowGenerateIssueModal(true)}>
             Add Task
           </Button>
           <Button size="sm" variant="outline">
