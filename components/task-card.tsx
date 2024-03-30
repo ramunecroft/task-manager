@@ -4,6 +4,7 @@ import {getTasks} from "@/client/api/task";
 import {Icons} from "@/components/icons";
 import {Card, CardContent, CardDescription, CardHeader} from "@/components/ui/card";
 import {QUERY_KEY, priority} from "@/constants";
+import {cn} from "@/lib/utils";
 import {type Task} from "@/server/db/schema";
 import {showTaskModalAtom, taskModalStateAtom} from "@/store/task";
 import {useQuery} from "@tanstack/react-query";
@@ -16,6 +17,7 @@ type TaskCardProps = {
   ticketCode: string;
   voteCount: Task["voteCount"];
   priority: Task["priority"];
+  className?: string;
 };
 
 export const TaskCard = ({
@@ -23,6 +25,7 @@ export const TaskCard = ({
   ticketCode,
   voteCount,
   priority,
+  className,
 }: TaskCardProps) => {
   const {
     data: taskList,
@@ -56,7 +59,7 @@ export const TaskCard = ({
       role="task-card"
       onClick={() => onClick()}
       onDragStart={e => handleDragStart(e, ticketCode)}
-      className="w-full flex-1 hover:cursor-pointer hover:shadow-lg"
+      className={cn("w-full flex-1 hover:cursor-pointer hover:shadow-lg", className)}
       draggable>
       <CardHeader>
         <CardDescription className="line-clamp-4 break-words dark:text-white">

@@ -29,6 +29,20 @@
       "when": 1710678346135,
       "tag": "0003_serious_ultron",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1710861154929,
+      "tag": "0004_steady_bruce_banner",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1710861800891,
+      "tag": "0005_chubby_butterfly",
+      "breakpoints": true
     }
   ]
 }
