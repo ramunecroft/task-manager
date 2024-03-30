@@ -1,6 +1,5 @@
-import {progressTriggeredAtom} from "@/store";
 import {clsx, type ClassValue} from "clsx";
-import {useSetAtom} from "jotai";
+import {format} from "date-fns";
 import {twMerge} from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -34,3 +33,15 @@ async function ApiFetch(
 }
 
 export {ApiFetch as fetch};
+
+/**
+ *
+ * @param selectedDate
+ * @returns YYYY-MM-DD HH:mm:ss.SSSSSS
+ */
+export function createStringTime(selectedDate: Date) {
+  const formattedDate = format(selectedDate, "yyyy-MM-dd");
+  const currentTime = format(new Date(), "HH:mm:ss.SSSSSS");
+  const time = formattedDate.concat(" ", currentTime);
+  return time;
+}

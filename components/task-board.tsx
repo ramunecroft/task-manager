@@ -1,9 +1,32 @@
+"use client";
+
 import {TaskSection} from "@/components/task-section";
 import {Button} from "@/components/ui/button";
+import {useTaskList} from "@/hooks/use-task-list";
+import {useTaskMutation} from "@/hooks/use-task-mutation";
+import {createStringTime} from "@/lib/utils";
+import {type Task} from "@/server/db/schema";
 import {FolderIcon} from "lucide-react";
 import Link from "next/link";
+import {DragDropContext, type DropResult} from "react-beautiful-dnd";
 
 export const TaskBoard = () => {
+  const {data: taskList} = useTaskList();
+  const {mutate: taskMutate} = useTaskMutation();
+
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) return;
+    const targetStatus = result.destination.droppableId as Task["status"];
+    const taskId = result.draggableId;
+    const sourceTask = taskList?.find(task => task.id === taskId);
+    if (!sourceTask) return;
+    const updatedAt = createStringTime(new Date());
+    const updatedTask = {...sourceTask, status: targetStatus, updatedAt} satisfies Task;
+    taskMutate({
+      ...updatedTask,
+    });
+  };
+
   return (
     <div className="w-full flex-1 flex-col">
       <header className="flex h-14 items-center border-b">
@@ -36,10 +59,12 @@ export const TaskBoard = () => {
           </nav>
         </div>
         <div className="grid h-screen flex-1 grid-flow-col grid-cols-4 gap-8">
-          <TaskSection status="TO_DO" />
-          <TaskSection status="IN_PROGRESS" />
-          <TaskSection status="IN_REVIEW" />
-          <TaskSection status="DONE" />
+          <DragDropContext onDragEnd={result => onDragEnd(result)}>
+            <TaskSection status="TO_DO" />
+            <TaskSection status="IN_PROGRESS" />
+            <TaskSection status="IN_REVIEW" />
+            <TaskSection status="DONE" />
+          </DragDropContext>
         </div>
       </div>
     </div>

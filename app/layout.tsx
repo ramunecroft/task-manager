@@ -4,7 +4,7 @@ import {Provider} from "@/components/providers";
 import {SiteFooter} from "@/components/site-footer";
 import {SiteHeader} from "@/components/site-header";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
-import {Toaster} from "@/components/ui/toaster";
+import {Toaster} from "@/components/ui/sonner";
 import {fontSans} from "@/lib/fonts";
 import {cn} from "@/lib/utils";
 import "@/styles/globals.css";
