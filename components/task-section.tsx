@@ -21,7 +21,7 @@ export const TaskSection = ({status}: TaskSectionType) => {
       <div
         className="text-md sticky top-0 bg-gray-100 px-2 py-2 pl-4
        font-semibold text-gray-500 dark:bg-gray-800/40 dark:text-white">
-        <h3>{status.split("_").join(" ")}</h3>
+        <h3>{status[0].toUpperCase() + status.slice(1).split("_").join(" ")}</h3>
       </div>
       <div className="min-h-screen bg-gray-100 dark:bg-gray-800/40">
         <div className="flex flex-col items-start justify-center space-y-2">

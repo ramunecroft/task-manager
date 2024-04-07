@@ -15,7 +15,7 @@ async function main() {
   //   })
   //   .returning();
 
-  for (let index = 0; index < 10; index++) {
+  for (let index = 0; index < 500; index++) {
     const [maxOrder] = await db
       .select({
         value: max(tasks.order),
@@ -25,9 +25,10 @@ async function main() {
     const task = await db.insert(tasks).values({
       title: "Task title",
       description: "Task description",
-      status: "TO_DO",
+      status: "todo",
       ticketCode: "TICKET-" + index,
       priority: "low",
+      label: "bug",
       ownerId: "7f52ec8b-3f25-4b11-bb18-e691dd2d68d5",
       order: maxOrder.value ? maxOrder.value + 1 : 1,
     });

@@ -25,10 +25,18 @@ export const priorityEnum = pgEnum("priority", [
 ]);
 
 export const statusEnum = pgEnum("status", [
-  "TO_DO",
-  "IN_REVIEW",
-  "IN_PROGRESS",
-  "DONE",
+  "backlog",
+  "todo",
+  "review",
+  "in_progress",
+  "done",
+]);
+
+export const labelEnum = pgEnum("label", [
+  "bug",
+  "feature",
+  "enhancement",
+  "documentation",
 ]);
 
 export const accounts = pgTable(
@@ -95,6 +103,7 @@ export const tasks = pgTable(
     priority: priorityEnum("priority"),
     description: text("description").notNull(),
     status: statusEnum("status").notNull(),
+    label: labelEnum("label").notNull(),
     ticketCode: text("ticketCode").notNull(),
     voteCount: integer("voteCount").default(0),
     ownerId: uuid("owner_id").references(() => users.id, {onDelete: "cascade"}),
