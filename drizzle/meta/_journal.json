@@ -43,6 +43,20 @@
       "when": 1710861800891,
       "tag": "0005_chubby_butterfly",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1711859128524,
+      "tag": "0006_vengeful_korvac",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1711875409496,
+      "tag": "0007_hard_expediter",
+      "breakpoints": true
     }
   ]
 }

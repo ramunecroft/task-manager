@@ -43,10 +43,10 @@ export const TaskModalActionPannel = () => {
           <SelectValue placeholder={taskModalState.status.split("_").join(" ")} />
         </SelectTrigger>
         <SelectContent className="font-extrabold">
-          <SelectItem value="TO_DO">TO DO</SelectItem>
-          <SelectItem value="IN_PROGRESS">IN PROGRESS</SelectItem>
-          <SelectItem value="IN_REVIEW">IN REVIEW</SelectItem>
-          <SelectItem value="DONE">DONE</SelectItem>
+          <SelectItem value="todo">TO DO</SelectItem>
+          <SelectItem value="in_progress">IN PROGRESS</SelectItem>
+          <SelectItem value="review">IN REVIEW</SelectItem>
+          <SelectItem value="done">DONE</SelectItem>
         </SelectContent>
       </Select>
       <Collapsible open={isOpen} onOpenChange={setIsOpen} className="space-y-2">

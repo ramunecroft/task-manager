@@ -1,5 +1,6 @@
 "use client";
 
+import {statuses} from "@/app/data";
 import {TaskSection} from "@/components/task-section";
 import {Button} from "@/components/ui/button";
 import {useTaskList} from "@/hooks/use-task-list";
@@ -60,10 +61,15 @@ export const TaskBoard = () => {
         </div>
         <div className="grid h-screen flex-1 grid-flow-col grid-cols-4 gap-8">
           <DragDropContext onDragEnd={result => onDragEnd(result)}>
-            <TaskSection status="TO_DO" />
-            <TaskSection status="IN_PROGRESS" />
-            <TaskSection status="IN_REVIEW" />
-            <TaskSection status="DONE" />
+            {statuses.map(status => {
+              if (status.value === "backlog") return;
+              return (
+                <TaskSection
+                  key={status.value}
+                  status={status.value as Task["status"]}
+                />
+              );
+            })}
           </DragDropContext>
         </div>
       </div>
