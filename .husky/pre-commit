@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-bun prettier:fix && bun lint:fix && bun prettier && bun lint && bun lint-staged
+bun prettier:fix && bun lint:fix && bun prettier && bun lint

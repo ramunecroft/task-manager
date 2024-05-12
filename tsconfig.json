@@ -18,11 +18,11 @@
         "name": "next"
       }
     ],
-    "types": ["node", "jest", "cypress"],
+    "types": ["node", "jest"],
     "paths": {
       "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "cypress.config.ts", "cypress"]
+  "exclude": ["node_modules"]
 }
