@@ -47,7 +47,7 @@ export function SiteHeader({session}: SiteHeaderProps) {
               <Link
                 className="flex items-center justify-center"
                 rel="noreferrer"
-                href={"login"}>
+                href={"sign-in"}>
                 <Icons.user />
               </Link>
             )}

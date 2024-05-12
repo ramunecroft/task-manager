@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import {getUserByEmail} from "@/server/users";
-import {type NextAuthConfig} from "next-auth";
-import GitHub from "@auth/core/providers/github";
+import type {NextAuthConfig} from "next-auth";
+import GitHub from "next-auth/providers/github";
 import Credentials from "@auth/core/providers/credentials";
 import {signInSchema} from "@/lib/validations/auth";
 
