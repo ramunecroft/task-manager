@@ -5,7 +5,7 @@ export const MainNavigation = () => {
   const menus = {
     Docs: "/docs",
     Task: "/task",
-    Theme: "/themes",
+    Backlog: "/backlog",
   };
 
   return (
