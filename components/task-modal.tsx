@@ -14,7 +14,7 @@ export const TaskModal = () => {
     <Dialog open={showTaskModal} onOpenChange={setShowTaskModal}>
       <DialogContent
         role={"task-modal"}
-        className="mx-auto my-8 flex h-3/4 max-w-md flex-col items-start rounded-lg bg-white p-4 shadow-lg sm:max-w-xl md:max-w-6xl">
+        className="my-8 mx-auto flex h-3/4 max-w-md flex-col items-start rounded-lg bg-white p-4 shadow-lg sm:max-w-xl md:max-w-6xl">
         <div className="flex h-full w-full flex-col gap-y-2">
           <TaskModalHeader />
           <div id="content" className="grid h-full grid-flow-col grid-cols-6 gap-x-8">

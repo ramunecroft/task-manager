@@ -79,8 +79,8 @@ export const TaskSelect = ({selectLabel}: TaskSelectProps) => {
   };
 
   return (
-    <div className="grid grid-flow-col grid-cols-8 items-center px-3 py-2 focus:shadow">
-      <p className="col-span-3 text-sm text-muted-foreground">{selectLabel}</p>
+    <div className="grid grid-flow-col grid-cols-8 items-center py-2 px-3 focus:shadow">
+      <p className="text-muted-foreground col-span-3 text-sm">{selectLabel}</p>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button variant="outline" className="w-[200px] justify-start">

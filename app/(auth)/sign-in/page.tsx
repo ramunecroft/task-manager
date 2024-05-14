@@ -17,7 +17,7 @@ export default function SignInPage() {
         href="/"
         className={cn(
           buttonVariants({variant: "ghost"}),
-          "absolute left-4 top-4 md:left-8 md:top-8"
+          "absolute top-4 left-4 md:top-8 md:left-8"
         )}>
         <>
           <Icons.chevronLeft className="mr-2 h-4 w-4" />
@@ -26,7 +26,7 @@ export default function SignInPage() {
       </Link>
       <SignInForm />
       <SocialButtons />
-      <p className="px-8 text-center text-sm text-muted-foreground">
+      <p className="text-muted-foreground px-8 text-center text-sm">
         <Link
           href="/register"
           className="hover:text-brand underline underline-offset-4">

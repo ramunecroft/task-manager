@@ -22,9 +22,9 @@ export function SiteHeader({session}: SiteHeaderProps) {
   };
 
   return (
-    <header className="sticky top-0 z-50 flex w-full flex-col border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="border-border/40 bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 flex w-full flex-col border-b backdrop-blur">
       <Progress />
-      <div className="container flex h-14 max-w-screen-2xl items-center">
+      <div className="container flex h-14 items-center">
         <MainNavigation />
         <div className="flex flex-1 items-center justify-between gap-x-2 md:justify-end">
           {session && (

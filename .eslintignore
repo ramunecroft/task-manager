@@ -2,3 +2,4 @@
 prettier.config.cjs
 next.config.mjs
 postcss.config.js
+node_modules/

@@ -50,7 +50,7 @@ export const TaskModalActionPannel = () => {
         </SelectContent>
       </Select>
       <Collapsible open={isOpen} onOpenChange={setIsOpen} className="space-y-2">
-        <div className="flex items-center justify-between border border-gray-300 px-3 py-1">
+        <div className="flex items-center justify-between border border-gray-300 py-1 px-3">
           <p className="font-bold text-gray-600">Details</p>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm">
