@@ -39,7 +39,7 @@ export default async function RootLayout({children}: Readonly<RootLayoutProps>) 
         <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "bg-background min-h-screen font-sans antialiased",
             fontSans.className
           )}>
           <Provider
@@ -50,7 +50,7 @@ export default async function RootLayout({children}: Readonly<RootLayoutProps>) 
             <Toaster />
             <TailwindIndicator />
             <ModalProvider>
-              <div className="relative flex min-h-screen flex-col bg-background">
+              <div className="bg-background relative flex min-h-screen flex-col">
                 <SiteHeader session={session} />
                 <main className="flex flex-1 items-center justify-center overflow-auto">
                   {children}

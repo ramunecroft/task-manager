@@ -8,7 +8,7 @@ export const TaskModalHeader = () => {
   if (!taskModalState) return null;
   return (
     <div id="tash-header">
-      <div className="flex w-full flex-grow flex-row items-center justify-between">
+      <div className="flex-grow flex w-full flex-row items-center justify-between">
         <div className="flex items-center justify-center space-x-2">
           <PriorityIcon level={taskModalState?.priority} />
           <p>{taskModalState.ticketCode}</p>

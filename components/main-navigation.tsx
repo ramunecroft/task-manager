@@ -19,7 +19,7 @@ export const MainNavigation = () => {
           <Link
             key={key}
             href={`${value}`}
-            className="cursor-pointer text-foreground/60 transition-colors hover:text-foreground/80">
+            className="text-foreground/60 hover:text-foreground/80 cursor-pointer transition-colors">
             {key}
           </Link>
         ))}

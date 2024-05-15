@@ -30,7 +30,7 @@ export const TaskBoard = () => {
 
   return (
     <div className="w-full flex-1 flex-col">
-      <header className="flex h-14 items-center border-b">
+      <header className="flex h-14 items-center border-b border-gray-200">
         <h1 className="text-lg font-semibold">Scrum Board</h1>
         <div className="ml-auto flex gap-4">
           <Button size="sm" variant="outline">

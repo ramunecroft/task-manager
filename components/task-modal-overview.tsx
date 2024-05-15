@@ -41,7 +41,7 @@ export const TaskModalOverview = () => {
   };
 
   return (
-    <div id="task-detail-modal-overfiew" className="max-w-[780px col-span-4 grid">
+    <div id="task-detail-modal-overfiew" className="col-span-4 grid max-w-[780px">
       <div className="row-span-1 flex flex-col gap-2">
         <div
           onDoubleClick={() => setIsTitleEdting(true)}
@@ -57,7 +57,7 @@ export const TaskModalOverview = () => {
             <p className="text-3xl font-bold">{taskModalState?.title}</p>
           )}
         </div>
-        <div className="flex flex-grow justify-start">
+        <div className="flex-grow flex justify-start">
           {/* Todo Icons */}
           {/* <UserIcon />
           <UserIcon />

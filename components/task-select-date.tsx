@@ -43,14 +43,14 @@ export const TaskSelectDate = ({date}: TaskSelectDateProps) => {
   const isDateSelected = !!taskModalState[date];
 
   return (
-    <div className="grid grid-flow-col grid-cols-8 items-center px-3 py-2 focus:shadow">
-      <p className="col-span-3 text-sm text-muted-foreground">{dateLabel}</p>
+    <div className="grid grid-flow-col grid-cols-8 items-center py-2 px-3 focus:shadow">
+      <p className="text-muted-foreground col-span-3 text-sm">{dateLabel}</p>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             className={cn(
-              "w-[200px] px-4 py-2 text-left font-normal",
+              "w-[200px] py-2 px-4 text-left font-normal",
               !isDateSelected && "text-muted-foreground"
             )}>
             <p className={isDateSelected ? "text-black" : ""}>
